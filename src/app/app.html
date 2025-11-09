@@ -1,0 +1,15 @@
+<div class="app-container">
+  <!-- Barra de navegación -->
+  <nav class="navbar">
+    <div class="nav-buttons">
+      <a routerLink="/cartelera" routerLinkActive="active" class="nav-button hola-btn">CARTELERA</a>
+      <a routerLink="/anadir-pelicula" routerLinkActive="active" class="nav-button adios-btn">AGREGAR</a>
+      <a routerLink="/eliminar-pelicula" routerLinkActive="active" class="nav-button adios-btn">ELIMINAR</a>
+    </div>
+  </nav>
+
+  <!-- Aquí se cargan las páginas -->
+  <div class="page-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

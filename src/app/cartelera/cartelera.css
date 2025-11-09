@@ -36,7 +36,7 @@
   align-items: center;
   justify-content: center;
   background-color: #f8f9fa;
-  flex-shrink: 0; /* Evita que se encoja */
+  flex-shrink: 0;
 }
 
 .card-img-top {
@@ -55,11 +55,11 @@
 .card-body {
   padding: 1.25rem;
   display: flex;
-  align-items: center; /* Centra verticalmente */
-  justify-content: center; /* Centra horizontalmente */
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  flex-grow: 1; /* Ocupa el espacio disponible */
-  min-height: 80px; /* Altura mínima para consistencia */
+  flex-grow: 1;
+  min-height: 80px;
 }
 
 .nombre-pelicula {
@@ -67,12 +67,28 @@
   font-weight: 700;
   text-align: center;
   text-transform: uppercase;
-  margin: 0; /* Quitamos márgenes para mejor centrado */
+  margin: 0;
   color: #1a2530;
   letter-spacing: 1px;
   line-height: 1.2;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-  width: 100%; /* Asegura que ocupe todo el ancho */
+  width: 100%;
+}
+
+/* Para móviles muy pequeños */
+@media (max-width: 576px) {
+  .row.row-cols-2 {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  
+  .card-img-container {
+    height: 200px;
+  }
+  
+  .nombre-pelicula {
+    font-size: 1.1rem;
+  }
 }
 
 /* Estilos para el placeholder de imagen rota */
@@ -85,38 +101,8 @@ img[src*="placeholder"] {
   color: #6c757d;
 }
 
-/* Estilos personalizados para el formulario - FULL IZQUIERDA */
-.formulario-izquierda {
-  margin-left: 0 !important;
-  margin-right: auto !important;
-  padding-left: 0 !important;
-  width: 100% !important;
-  max-width: 100% !important;
-}
-
-.formulario-izquierda .card-body {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-
-.formulario-izquierda .row {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-}
-
-.formulario-izquierda .col-md-5,
-.formulario-izquierda .col-md-2 {
-  padding-left: 0 !important;
-  padding-right: 15px; /* Mantenemos un poco de espacio entre columnas */
-}
-
-/* Aseguramos que los inputs también estén pegados a la izquierda */
-.formulario-izquierda .form-control {
-  margin-left: 0 !important;
-}
-
-/* El tip también pegado a la izquierda */
-.formulario-izquierda small {
-  text-align: left !important;
-  padding-left: 0 !important;
+/* Estilos para la tarjeta de información */
+.bg-light {
+  background-color: #f8f9fa !important;
+  border: 1px solid #dee2e6;
 }

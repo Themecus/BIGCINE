@@ -1,0 +1,51 @@
+<div class="container mt-4">
+  <!-- Título principal -->
+  <div class="text-center mb-5">
+    <h1 class="display-4 text-primary">🎭 Cartelera de Películas</h1>
+    <p class="lead text-muted">Todas las películas en tu colección</p>
+  </div>
+
+  <!-- Información de la cartelera -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="card bg-light">
+        <div class="card-body text-center">
+          <h5 class="card-title">Total de películas: {{ peliculas.length }}</h5>
+          <p class="card-text mb-0">
+            Ve a "Agregar" para añadir más películas o "Eliminar" para gestionar tu colección
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cartelera de películas -->
+  <div class="cartelera-container">
+    <!-- Mensaje cuando no hay películas -->
+    <div *ngIf="peliculas.length === 0" class="text-center py-5">
+      <div class="alert alert-info">
+        <h4>No hay películas en la cartelera</h4>
+        <p class="mb-0">¡Ve a la pestaña "Agregar" para añadir tu primera película!</p>
+      </div>
+    </div>
+
+    <!-- Grid de películas 2 columnas -->
+    <div class="row row-cols-2 g-4" *ngIf="peliculas.length > 0">
+      <div class="col" *ngFor="let pelicula of peliculas">
+        <div class="card h-100 shadow-sm pelicula-card">
+          <div class="card-img-container">
+            <img 
+              [src]="pelicula.imagenUrl" 
+              class="card-img-top" 
+              [alt]="pelicula.nombre"
+              (error)="pelicula.imagenUrl = 'https://via.placeholder.com/300x450/007bff/ffffff?text=Imagen+No+Disponible'"
+            >
+          </div>
+          <div class="card-body">
+            <h5 class="nombre-pelicula">{{ pelicula.nombre }}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><p>cartelera works!</p>
