@@ -1,0 +1,52 @@
+/* Estilos personalizados para el formulario - FULL IZQUIERDA */
+.formulario-izquierda {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  padding-left: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.formulario-izquierda .card-body {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.formulario-izquierda .row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.formulario-izquierda .col-md-5,
+.formulario-izquierda .col-md-2 {
+  padding-left: 0 !important;
+  padding-right: 15px;
+}
+
+/* Aseguramos que los inputs también estén pegados a la izquierda */
+.formulario-izquierda .form-control {
+  margin-left: 0 !important;
+}
+
+/* El tip también pegado a la izquierda */
+.formulario-izquierda small {
+  text-align: left !important;
+  padding-left: 0 !important;
+}
+
+/* Estilos para el botón */
+.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-success:hover:not(:disabled) {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+.btn-success:disabled {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  cursor: not-allowed;
+}

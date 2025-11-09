@@ -1,0 +1,63 @@
+<div class="container mt-4">
+  <!-- Título principal -->
+  <div class="text-center mb-5">
+    <h1 class="display-4 text-danger">💥 Eliminar Películas</h1>
+    <p class="lead text-muted">Haz clic en cualquier película para eliminarla con explosión</p>
+  </div>
+
+  <!-- Información de la cartelera -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="card bg-danger text-white">
+        <div class="card-body text-center">
+          <h5 class="card-title">Películas disponibles: {{ peliculas.length }}</h5>
+          <p class="card-text mb-2">¡Cuidado! Las películas se eliminarán permanentemente</p>
+          <button 
+            *ngIf="peliculas.length > 0"
+            class="btn btn-outline-light btn-sm" 
+            (click)="eliminarTodasLasPeliculas()">
+            💣 Eliminar Todas
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cartelera de películas para eliminar -->
+  <div class="cartelera-container">
+    <!-- Mensaje cuando no hay películas -->
+    <div *ngIf="peliculas.length === 0" class="text-center py-5">
+      <div class="alert alert-success">
+        <h4>🎉 ¡No hay películas para eliminar!</h4>
+        <p class="mb-0">Todas las películas han sido eliminadas. Ve a "Agregar" para añadir más.</p>
+      </div>
+    </div>
+
+    <!-- Grid de películas 2 columnas -->
+    <div class="row row-cols-2 g-4" *ngIf="peliculas.length > 0">
+      <div class="col" *ngFor="let pelicula of peliculas">
+        <div class="card h-100 shadow-sm pelicula-card eliminar-card">
+          <div class="card-img-container">
+            <img 
+              [src]="pelicula.imagenUrl" 
+              class="card-img-top" 
+              [alt]="pelicula.nombre"
+              (error)="pelicula.imagenUrl = 'https://via.placeholder.com/300x450/dc3545/ffffff?text=Película'"
+            >
+            <div class="eliminar-overlay">
+              <span class="eliminar-text">💥 ELIMINAR</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <h5 class="nombre-pelicula">{{ pelicula.nombre }}</h5>
+            <button 
+              class="btn btn-danger w-100 mt-2"
+              (click)="eliminarPelicula(pelicula, $event)">
+              Tocar para eliminar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
