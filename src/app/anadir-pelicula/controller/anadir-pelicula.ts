@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-anadir-pelicula',
- templateUrl: '../view/anadir-pelicula.html',  
+  templateUrl: '../view/anadir-pelicula.html',  
   styleUrls: ['../view/anadir-pelicula.css'],   
   standalone: true,
   imports: [CommonModule, FormsModule]
@@ -13,7 +13,9 @@ export class AnadirPeliculaComponent {
  
   nuevaPelicula = {
     nombre: '',
-    imagenUrl: ''
+    imagenUrl: '',
+    genero: '',
+    duracion: ''
   };
 
  
@@ -43,6 +45,8 @@ export class AnadirPeliculaComponent {
       this.peliculas.push({
         nombre: this.nuevaPelicula.nombre,
         imagenUrl: this.nuevaPelicula.imagenUrl,
+        genero: this.nuevaPelicula.genero || 'Sin género',
+        duracion: this.nuevaPelicula.duracion || '—',
         id: Date.now() 
       });
 
@@ -52,7 +56,9 @@ export class AnadirPeliculaComponent {
 
       this.nuevaPelicula = {
         nombre: '',
-        imagenUrl: ''
+        imagenUrl: '',
+        genero: '',
+        duracion: ''
       };
 
 
