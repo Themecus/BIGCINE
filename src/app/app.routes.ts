@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { AnadirPeliculaComponent } from './anadir-pelicula/anadir-pelicula';
 import { CarteleraComponent } from './cartelera/cartelera';
 import { EliminarPeliculaComponent } from './eliminar-pelicula/eliminar-pelicula';
+import { EliminarCineComponent } from './eliminar-cine/eliminar-cine';
 
 export const routes: Routes = [
   {
@@ -18,6 +19,11 @@ export const routes: Routes = [
     path: 'eliminar-pelicula',  
     component: EliminarPeliculaComponent,
     title: 'Eliminar Película'
+  },
+  {
+    path: 'eliminar-cine',
+    component: EliminarCineComponent,
+    title: 'Eliminar Cine'
   },
   {
     path: '',
