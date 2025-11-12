@@ -1,5 +1,4 @@
 <div class="eliminar-page">
-  <!-- Hero Section con el estilo de cartelera -->
   <section class="hero">
     <div class="hero-inner">
       <div>
@@ -13,9 +12,9 @@
     </div>
   </section>
 
-  <!-- El resto de tu código ORIGINAL sin cambios -->
+ 
   <div class="container mt-4">
-    <!-- Información de la cartelera -->
+    
     <div class="row mb-4">
       <div class="col-12">
         <div class="card bg-danger text-white">
@@ -33,9 +32,9 @@
       </div>
     </div>
 
-    <!-- Cartelera de películas para eliminar -->
+   
     <div class="cartelera-container">
-      <!-- Mensaje cuando no hay películas -->
+    
       <div *ngIf="peliculas.length === 0" class="text-center py-5">
         <div class="alert alert-success">
           <h4>🎉 ¡No hay películas para eliminar!</h4>
@@ -43,7 +42,7 @@
         </div>
       </div>
 
-      <!-- Grid de películas 2 columnas -->
+      
       <div class="row row-cols-2 g-4" *ngIf="peliculas.length > 0">
         <div class="col" *ngFor="let pelicula of peliculas">
           <div class="card h-100 shadow-sm pelicula-card eliminar-card" [attr.data-pelicula-id]="pelicula.id">
@@ -71,7 +70,7 @@
       </div>
     </div>
 
-    <!-- Ventanas emergentes (sin cambios) -->
+   
     <div *ngIf="mostrarConfirmacion" class="modal-overlay">
       <div class="modal-content">
         <div class="modal-header">

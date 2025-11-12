@@ -1,18 +1,17 @@
-/* Estilos para la cartelera */
 :root{
-  --blue-900: #063970; /* fondo más oscuro */
-  --blue-700: #0a58ca; /* azul principal */
+  --blue-900: #063970; 
+  --blue-700: #0a58ca; 
   --white: #ffffff;
   --muted: #6c757d;
   --card-shadow: rgba(2,6,23,0.08);
 }
 
-/* Página */
+
 .cartelera-page{
   background: linear-gradient(180deg,var(--blue-900) 0%, var(--blue-700) 60%);
   min-height: 100vh;
   color: var(--white);
-  display: flex; /* layout flex para poder empujar el footer al fondo */
+  display: flex; 
   flex-direction: column;
 }
 
@@ -158,12 +157,12 @@
   text-align:center;
 }
 
-/* Contenido principal en tarjeta blanca */
+
 .main-card{ background:var(--white); color:#0b2140; border-radius:12px; padding:1.25rem; margin-top:1rem; box-shadow:0 8px 30px var(--card-shadow); flex: 1 0 auto; }
 
 .empty-state .empty-box{ background:#f3f6fb; padding:1.5rem; border-radius:8px; text-align:center; color:#334155 }
 
-/* Grid responsivo */
+
 .cartelera-container .grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1.25rem }
 
 .pelicula-card{ background:var(--white); border-radius:10px; overflow:hidden; display:flex; flex-direction:column; transition:transform .22s ease, box-shadow .22s ease; min-height:320px }
@@ -176,16 +175,16 @@
 .nombre-pelicula{ font-size:1.05rem; font-weight:700; margin:0 0 .4rem 0 }
 .pelicula-meta{ margin:0; color:var(--muted); font-size:.9rem }
 
-/* Placeholder images */
+
 img[src*="placeholder"]{ background:#e9f2ff }
 
-/* Footer */
+
 .cartelera-footer{ background:linear-gradient(180deg, rgba(6,57,112,0.95) 0%, rgba(10,88,202,0.95) 100%); color:var(--white); padding:1rem 0; margin-top:1rem }
 .footer-inner{ display:flex; align-items:center; justify-content:space-between; gap:1rem }
 .footer-brand{ font-weight:800 }
 .footer-links a{ color:var(--white); text-decoration:none; margin-right:1rem }
 .footer-links a:hover{ text-decoration:underline }
 
-/* Responsive tweaks */
+
 @media (max-width:768px){ .card-img-container{ height:260px } .hero-inner{ flex-direction:column; align-items:flex-start } }
 @media (max-width:480px){ .card-img-container{ height:220px } .hero-title{ font-size:1.4rem } .footer-inner{ flex-direction:column; align-items:flex-start } }

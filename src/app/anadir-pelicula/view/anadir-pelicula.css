@@ -1,4 +1,4 @@
-/* Solo agregar estos estilos al inicio de tu CSS existente */
+
 .agregar-page {
   background: linear-gradient(180deg, var(--blue-900) 0%, var(--blue-700) 60%);
   min-height: 100vh;
@@ -83,7 +83,7 @@
   text-shadow: 0 1px 6px rgba(6, 57, 112, 0.13);
 }
 
-/* El resto de tu CSS ORIGINAL se mantiene igual */
+
 .formulario-izquierda {
   margin-left: 0 !important;
   margin-right: auto !important;
@@ -108,18 +108,18 @@
   padding-right: 15px;
 }
 
-/* Aseguramos que los inputs también estén pegados a la izquierda */
+
 .formulario-izquierda .form-control {
   margin-left: 0 !important;
 }
 
-/* El tip también pegado a la izquierda */
+
 .formulario-izquierda small {
   text-align: left !important;
   padding-left: 0 !important;
 }
 
-/* Estilos para el botón */
+
 .btn-success {
   background-color: #28a745;
   border-color: #28a745;
