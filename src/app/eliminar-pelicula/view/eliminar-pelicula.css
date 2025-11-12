@@ -1,4 +1,4 @@
-
+/* Solo agregar estos estilos al inicio de tu CSS existente */
 .eliminar-page {
   background: linear-gradient(180deg, var(--blue-900) 0%, var(--blue-700) 60%);
   min-height: 100vh;
@@ -77,11 +77,12 @@
   text-shadow: 0 1px 6px rgba(220, 53, 69, 0.13);
 }
 
-
+/* El resto de tu CSS ORIGINAL se mantiene igual */
 .cartelera-container {
   min-height: 400px;
 }
 
+/* Fuerza 2 columnas en todos los dispositivos */
 .row.row-cols-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -93,7 +94,7 @@
   min-width: 0;
 }
 
-
+/* Estilos de las tarjetas para eliminar */
 .eliminar-card {
   transition: all 0.3s ease;
   border: none;
@@ -122,7 +123,7 @@
   position: relative;
 }
 
-
+/* Overlay para eliminar */
 .eliminar-overlay {
   position: absolute;
   top: 0;
@@ -156,7 +157,7 @@
   background-color: white;
 }
 
-
+/* ESTILOS MEJORADOS PARA EL NOMBRE DE LA PELÍCULA */
 .card-body {
   padding: 1.25rem;
   display: flex;
@@ -181,7 +182,7 @@
   width: 100%;
 }
 
-
+/* ANIMACIÓN DE EXPLOSIÓN */
 @keyframes explosion {
   0% {
     transform: scale(1);
@@ -203,7 +204,7 @@
   pointer-events: none;
 }
 
-
+/* Efecto de partículas (simulado con box-shadow) */
 .exploding::before {
   content: '';
   position: absolute;
@@ -233,7 +234,7 @@
   }
 }
 
-
+/* Botón de eliminar */
 .btn-danger {
   background: linear-gradient(45deg, #dc3545, #c82333);
   border: none;
@@ -246,7 +247,7 @@
   transform: scale(1.05);
 }
 
-
+/* Para móviles muy pequeños */
 @media (max-width: 576px) {
   .row.row-cols-2 {
     grid-template-columns: 1fr 1fr;
@@ -266,7 +267,7 @@
   }
 }
 
-
+/* Estilos para el placeholder de imagen rota */
 img[src*="placeholder"] {
   background-color: #f8f9fa;
   display: flex;
@@ -276,7 +277,7 @@ img[src*="placeholder"] {
   color: #6c757d;
 }
 
-
+/* Estilos para ventanas emergentes */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -334,7 +335,7 @@ img[src*="placeholder"] {
   border-top: none;
 }
 
-
+/* Animaciones para modales */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -351,7 +352,7 @@ img[src*="placeholder"] {
   }
 }
 
-
+/* Botones de modal */
 .btn-secondary {
   background-color: #6c757d;
   border-color: #6c757d;
