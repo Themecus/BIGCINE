@@ -21,18 +21,16 @@ Sistema de gestión y visualización de películas desarrollado en Angular.
 
 ---
 
-## 🚀 Comenzando
+# 🚀 Comenzando
 
 ### Prerrequisitos para correr
 - Node.js (versión 22.20.0)
 - npm
 - Angular CLI 20.3.9
 
-### Instalación
+## Instalación
+Usando El cmd se debe colocar lo siguiente:
+"git clone https://github.com/tu-usuario/bigcine.git" y despues llegar a esa carpeta con "cd bigcine"
 
-# Clonar el repositorio
-git clone https://github.com/tu-usuario/bigcine.git
-cd bigcine
-
-# Iniciar el servidor de desarrollo
-escribir en la consola de comandos "ng serve" y posterior a eso ir a su navegador de confianza para colocar "http://localhost:4200/"
+## Iniciar el servidor de desarrollo
+escribir en la consola de comandos "ng serve", para esto se debe estar en ruta de la carpeta sino saltara error, y despues de eso ir a su navegador de confianza para colocar "http://localhost:4200/"
