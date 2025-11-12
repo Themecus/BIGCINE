@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AnadirPeliculaComponent } from './anadir-pelicula';
+import { AnadirPeliculaComponent } from './controller/anadir-pelicula';
 
 describe('AnadirPelicula', () => {
   let component: AnadirPeliculaComponent;

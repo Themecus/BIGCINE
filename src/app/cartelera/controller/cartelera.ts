@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-cartelera',
-  templateUrl: './cartelera.html',
-  styleUrls: ['./cartelera.css'],
+  templateUrl: '../view/cartelera.html',
+  styleUrls: ['../view/cartelera.css'],
   standalone: true,
   imports: [CommonModule]
 })

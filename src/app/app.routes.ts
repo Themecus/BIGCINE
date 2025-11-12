@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { AnadirPeliculaComponent } from './anadir-pelicula/anadir-pelicula';
-import { CarteleraComponent } from './cartelera/cartelera';
-import { EliminarPeliculaComponent } from './eliminar-pelicula/eliminar-pelicula';
+import { AnadirPeliculaComponent } from './anadir-pelicula/controller/anadir-pelicula';
+import { CarteleraComponent } from './cartelera/controller/cartelera';
+import { EliminarPeliculaComponent } from './eliminar-pelicula/controller/eliminar-pelicula';
 
 export const routes: Routes = [
   {
