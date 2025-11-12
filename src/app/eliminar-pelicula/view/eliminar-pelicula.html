@@ -1,110 +1,120 @@
-<div class="container mt-4">
-  <!-- Título principal -->
-  <div class="text-center mb-5">
-    <h1 class="display-4 text-danger">💥 Eliminar Películas</h1>
-    <p class="lead text-muted">Haz clic en cualquier película para eliminarla con explosión</p>
-  </div>
-
-  <!-- Información de la cartelera -->
-  <div class="row mb-4">
-    <div class="col-12">
-      <div class="card bg-danger text-white">
-        <div class="card-body text-center">
-          <h5 class="card-title">Películas disponibles: {{ peliculas.length }}</h5>
-          <p class="card-text mb-2">¡Cuidado! Las películas se eliminarán permanentemente</p>
-          <button 
-            *ngIf="peliculas.length > 0"
-            class="btn btn-outline-light btn-sm" 
-            (click)="confirmarEliminarTodas()">
-            💣 Eliminar Todas
-          </button>
-        </div>
+<div class="eliminar-page">
+  <!-- Hero Section con el estilo de cartelera -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <h1 class="hero-title">
+          <span class="cartelera-icon">💥</span>
+          <span class="cartelera-nombre">ELIMINAR</span>
+          <span class="cartelera-destacado">PELÍCULAS</span>
+        </h1>
+        <p class="hero-subtitle">Haz clic en cualquier película para eliminarla</p>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Cartelera de películas para eliminar -->
-  <div class="cartelera-container">
-    <!-- Mensaje cuando no hay películas -->
-    <div *ngIf="peliculas.length === 0" class="text-center py-5">
-      <div class="alert alert-success">
-        <h4>🎉 ¡No hay películas para eliminar!</h4>
-        <p class="mb-0">Todas las películas han sido eliminadas. Ve a "Agregar" para añadir más.</p>
-      </div>
-    </div>
-
-    <!-- Grid de películas 2 columnas -->
-    <div class="row row-cols-2 g-4" *ngIf="peliculas.length > 0">
-      <div class="col" *ngFor="let pelicula of peliculas">
-        <div class="card h-100 shadow-sm pelicula-card eliminar-card" [attr.data-pelicula-id]="pelicula.id">
-          <div class="card-img-container">
-            <img 
-              [src]="pelicula.imagenUrl" 
-              class="card-img-top" 
-              [alt]="pelicula.nombre"
-              (error)="pelicula.imagenUrl = 'https://via.placeholder.com/300x450/dc3545/ffffff?text=Película'"
-            >
-            <div class="eliminar-overlay">
-              <span class="eliminar-text">💥 ELIMINAR</span>
-            </div>
-          </div>
-          <div class="card-body">
-            <h5 class="nombre-pelicula">{{ pelicula.nombre }}</h5>
+  <!-- El resto de tu código ORIGINAL sin cambios -->
+  <div class="container mt-4">
+    <!-- Información de la cartelera -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="card bg-danger text-white">
+          <div class="card-body text-center">
+            <h5 class="card-title">Películas disponibles: {{ peliculas.length }}</h5>
+            <p class="card-text mb-2">¡Cuidado! Las películas se eliminarán permanentemente</p>
             <button 
-              class="btn btn-danger w-100 mt-2"
-              (click)="confirmarEliminacion(pelicula, $event)">
-              💣 Eliminar Película
+              *ngIf="peliculas.length > 0"
+              class="btn btn-outline-light btn-sm" 
+              (click)="confirmarEliminarTodas()">
+              💣 Eliminar Todas
             </button>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Ventana emergente de confirmación -->
-  <div *ngIf="mostrarConfirmacion" class="modal-overlay">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title">⚠️ Confirmar Eliminación</h3>
+    <!-- Cartelera de películas para eliminar -->
+    <div class="cartelera-container">
+      <!-- Mensaje cuando no hay películas -->
+      <div *ngIf="peliculas.length === 0" class="text-center py-5">
+        <div class="alert alert-success">
+          <h4>🎉 ¡No hay películas para eliminar!</h4>
+          <p class="mb-0">Todas las películas han sido eliminadas. Ve a "Agregar" para añadir más.</p>
+        </div>
       </div>
-      <div class="modal-body">
-        <p *ngIf="peliculaAEliminar?.id !== 'all'">
-          ¿Estás seguro de que quieres eliminar la película <strong>"{{ peliculaAEliminar?.nombre }}"</strong>?
-        </p>
-        <p *ngIf="peliculaAEliminar?.id === 'all'">
-          ¿Estás seguro de que quieres eliminar <strong>TODAS las películas</strong>?<br>
-          <small class="text-muted">Esta acción no se puede deshacer</small>
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary" (click)="cancelarEliminacion()">Cancelar</button>
-        <button 
-          *ngIf="peliculaAEliminar?.id !== 'all'"
-          class="btn btn-danger" 
-          (click)="eliminarPeliculaConfirmada()">
-          💣 Sí, Eliminar
-        </button>
-        <button 
-          *ngIf="peliculaAEliminar?.id === 'all'"
-          class="btn btn-danger" 
-          (click)="eliminarTodasConfirmadas()">
-          💣 Sí, Eliminar Todas
-        </button>
+
+      <!-- Grid de películas 2 columnas -->
+      <div class="row row-cols-2 g-4" *ngIf="peliculas.length > 0">
+        <div class="col" *ngFor="let pelicula of peliculas">
+          <div class="card h-100 shadow-sm pelicula-card eliminar-card" [attr.data-pelicula-id]="pelicula.id">
+            <div class="card-img-container">
+              <img 
+                [src]="pelicula.imagenUrl" 
+                class="card-img-top" 
+                [alt]="pelicula.nombre"
+                (error)="pelicula.imagenUrl = 'https://via.placeholder.com/300x450/dc3545/ffffff?text=Película'"
+              >
+              <div class="eliminar-overlay">
+                <span class="eliminar-text">💥 ELIMINAR</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h5 class="nombre-pelicula">{{ pelicula.nombre }}</h5>
+              <button 
+                class="btn btn-danger w-100 mt-2"
+                (click)="confirmarEliminacion(pelicula, $event)">
+                💣 Eliminar Película
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Ventana emergente de éxito -->
-  <div *ngIf="mostrarExito" class="modal-overlay">
-    <div class="modal-content success-modal">
-      <div class="modal-header">
-        <h3 class="modal-title">✅ Eliminación Exitosa</h3>
+    <!-- Ventanas emergentes (sin cambios) -->
+    <div *ngIf="mostrarConfirmacion" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">⚠️ Confirmar Eliminación</h3>
+        </div>
+        <div class="modal-body">
+          <p *ngIf="peliculaAEliminar?.id !== 'all'">
+            ¿Estás seguro de que quieres eliminar la película <strong>"{{ peliculaAEliminar?.nombre }}"</strong>?
+          </p>
+          <p *ngIf="peliculaAEliminar?.id === 'all'">
+            ¿Estás seguro de que quieres eliminar <strong>TODAS las películas</strong>?<br>
+            <small class="text-muted">Esta acción no se puede deshacer</small>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" (click)="cancelarEliminacion()">Cancelar</button>
+          <button 
+            *ngIf="peliculaAEliminar?.id !== 'all'"
+            class="btn btn-danger" 
+            (click)="eliminarPeliculaConfirmada()">
+            💣 Sí, Eliminar
+          </button>
+          <button 
+            *ngIf="peliculaAEliminar?.id === 'all'"
+            class="btn btn-danger" 
+            (click)="eliminarTodasConfirmadas()">
+            💣 Sí, Eliminar Todas
+          </button>
+        </div>
       </div>
-      <div class="modal-body">
-        <p>{{ mensajeExito }}</p>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-success" (click)="cerrarExito()">Aceptar</button>
+    </div>
+
+    <div *ngIf="mostrarExito" class="modal-overlay">
+      <div class="modal-content success-modal">
+        <div class="modal-header">
+          <h3 class="modal-title">✅ Eliminación Exitosa</h3>
+        </div>
+        <div class="modal-body">
+          <p>{{ mensajeExito }}</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success" (click)="cerrarExito()">Aceptar</button>
+        </div>
       </div>
     </div>
   </div>

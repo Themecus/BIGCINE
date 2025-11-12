@@ -1,60 +1,68 @@
-<div class="container mt-4">
-  <!-- Título principal -->
-  <div class="text-center mb-5">
-    <h1 class="display-4 text-primary">🎬 Agregar Películas</h1>
-    <p class="lead text-muted">Añade nuevas películas a tu cartelera</p>
-  </div>
-
-  <!-- Formulario para agregar películas -->
-  <div class="card shadow-lg mb-5">
-    <div class="card-header bg-primary text-white">
-      <h5 class="card-title mb-0">➕ Agregar Nueva Película</h5>
-    </div>
-    <div class="card-body">
-      <div class="row g-3">
-        <div class="col-12 col-md-5">
-          <label for="nombrePelicula" class="form-label fw-bold">Nombre de la Película</label>
-          <input
-            id="nombrePelicula"
-            type="text"
-            class="form-control"
-            placeholder="Ej: Avengers, Star Wars..."
-            [(ngModel)]="nuevaPelicula.nombre"
-            (keypress)="manejarEnter($event)"
-          >
-        </div>
-        <div class="col-12 col-md-5">
-          <label for="imagenUrl" class="form-label fw-bold">URL de la Imagen</label>
-          <input
-            id="imagenUrl"
-            type="text"
-            class="form-control"
-            placeholder="Ej: https://ejemplo.com/imagen.jpg"
-            [(ngModel)]="nuevaPelicula.imagenUrl"
-            (keypress)="manejarEnter($event)"
-          >
-        </div>
-        <div class="col-12 col-md-2 d-flex align-items-end">
-          <button
-            class="btn btn-success w-100"
-            (click)="agregarPelicula()"
-            [disabled]="!nuevaPelicula.nombre.trim() || !nuevaPelicula.imagenUrl.trim()"
-          >
-            Agregar
-          </button>
-        </div>
+<div class="agregar-page">
+  <!-- Hero Section con el estilo de cartelera -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <h1 class="hero-title">
+          <span class="cartelera-icon">🎬</span>
+          <span class="cartelera-nombre">AGREGAR</span>
+          <span class="cartelera-destacado">PELÍCULAS</span>
+        </h1>
+        <p class="hero-subtitle">Añade nuevas películas a tu cartelera</p>
       </div>
-      <small class="text-muted mt-2 d-block">
-        💡 Tip: Puedes buscar imágenes en Google, hacer clic derecho y "Copiar dirección de la imagen"
-      </small>
     </div>
-  </div>
+  </section>
 
-  <!-- Mensaje de películas agregadas -->
-  <div class="text-center mt-4">
-    <div class="alert alert-info">
-      <h5>Total de películas en cartelera: {{ peliculas.length }}</h5>
-      <p class="mb-0">Ve a la pestaña "Cartelera" para ver todas las películas</p>
+  <!-- El resto de tu código ORIGINAL sin cambios -->
+  <div class="container mt-4">
+    <!-- Formulario para agregar películas -->
+    <div class="card shadow-lg mb-5">
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-12 col-md-5">
+            <label for="nombrePelicula" class="form-label fw-bold">Nombre de la Película</label>
+            <input
+              id="nombrePelicula"
+              type="text"
+              class="form-control"
+              placeholder="Ej: Avengers, Star Wars..."
+              [(ngModel)]="nuevaPelicula.nombre"
+              (keypress)="manejarEnter($event)"
+            >
+          </div>
+          <div class="col-12 col-md-5">
+            <label for="imagenUrl" class="form-label fw-bold">URL de la Imagen</label>
+            <input
+              id="imagenUrl"
+              type="text"
+              class="form-control"
+              placeholder="Ej: https://ejemplo.com/imagen.jpg"
+              [(ngModel)]="nuevaPelicula.imagenUrl"
+              (keypress)="manejarEnter($event)"
+            >
+          </div>
+          <div class="col-12 col-md-2 d-flex align-items-end">
+            <button
+              class="btn btn-success w-100"
+              (click)="agregarPelicula()"
+              [disabled]="!nuevaPelicula.nombre.trim() || !nuevaPelicula.imagenUrl.trim()"
+            >
+              Agregar
+            </button>
+          </div>
+        </div>
+        <small class="text-muted mt-2 d-block">
+          💡 Tip: Puedes buscar imágenes en Google, hacer clic derecho y "Copiar dirección de la imagen"
+        </small>
+      </div>
+    </div>
+
+    <!-- Mensaje de películas agregadas -->
+    <div class="text-center mt-4">
+      <div class="alert alert-info">
+        <h5>Total de películas en cartelera: {{ peliculas.length }}</h5>
+        <p class="mb-0">Ve a la pestaña "Cartelera" para ver todas las películas</p>
+      </div>
     </div>
   </div>
 </div>
