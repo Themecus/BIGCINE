@@ -46,10 +46,10 @@ export class AppComponent implements OnInit {
         imagenUrl: this.nuevaPelicula.imagenUrl,
         id: Date.now() // ID único
       });
-
+      
       // Guardar en LocalStorage después de agregar
       this.guardarPeliculasEnLocalStorage();
-
+      
       // Limpiar el formulario
       this.nuevaPelicula = {
         nombre: '',

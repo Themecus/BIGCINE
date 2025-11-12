@@ -1,20 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PeliculasService, Pelicula } from '../services/peliculas.service';
 
 @Component({
   selector: 'app-cartelera',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './cartelera.html',
-  styleUrls: ['./cartelera.css']
+  styleUrls: ['./cartelera.css'],
+  standalone: true,
+  imports: [CommonModule]
 })
 export class CarteleraComponent implements OnInit {
-  peliculas: Pelicula[] = [];
+  // Array para almacenar las películas
+  peliculas: any[] = [];
 
-  constructor(private peliculasService: PeliculasService) {}
-
+  // Se ejecuta cuando el componente se inicializa
   ngOnInit() {
-    this.peliculas = this.peliculasService.obtenerPeliculas();
+    this.cargarPeliculasDesdeLocalStorage();
+  }
+
+  // Cargar películas desde LocalStorage
+  cargarPeliculasDesdeLocalStorage() {
+    const peliculasGuardadas = localStorage.getItem('carteleraPeliculas');
+    if (peliculasGuardadas) {
+      this.peliculas = JSON.parse(peliculasGuardadas);
+    }
   }
 }
