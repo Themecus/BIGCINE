@@ -1,51 +1,57 @@
-<div class="container mt-4">
-  <!-- Título principal -->
-  <div class="text-center mb-5">
-    <h1 class="display-4 text-primary">🎭 Cartelera de Películas</h1>
-    <p class="lead text-muted">Todas las películas en tu colección</p>
+<div class="container mt-3">
+  <!-- Título compacto -->
+  <div class="text-center mb-4">
+    <h2 class="h4 text-dark fw-bold">Cartelera de Películas</h2>
+    <p class="text-muted small">Tu colección completa de películas</p>
   </div>
 
-  <!-- Información de la cartelera -->
-  <div class="row mb-4">
-    <div class="col-12">
-      <div class="card bg-light">
-        <div class="card-body text-center">
-          <h5 class="card-title">Total de películas: {{ peliculas.length }}</h5>
-          <p class="card-text mb-0">
-            Ve a "Agregar" para añadir más películas o "Eliminar" para gestionar tu colección
-          </p>
-        </div>
-      </div>
+  <!-- Información de estado -->
+  <div class="card border-0 shadow-sm mb-4">
+    <div class="card-body text-center py-3">
+      <h6 class="card-title mb-1 fw-bold text-dark">
+        <span class="badge bg-dark fs-6">{{ peliculas.length }}</span>
+        películas en cartelera
+      </h6>
+      <p class="text-muted small mb-0">
+        Gestiona tu colección desde las pestañas "Agregar" o "Eliminar"
+      </p>
     </div>
   </div>
 
   <!-- Cartelera de películas -->
   <div class="cartelera-container">
     <!-- Mensaje cuando no hay películas -->
-    <div *ngIf="peliculas.length === 0" class="text-center py-5">
-      <div class="alert alert-info">
-        <h4>No hay películas en la cartelera</h4>
-        <p class="mb-0">¡Ve a la pestaña "Agregar" para añadir tu primera película!</p>
+    <div *ngIf="peliculas.length === 0" class="text-center py-4">
+      <div class="alert alert-light border">
+        <i class="fas fa-film fa-2x text-muted mb-3 d-block"></i>
+        <h6 class="alert-heading mb-2">No hay películas en la cartelera</h6>
+        <p class="mb-0 small text-muted">
+          Ve a la pestaña "Agregar" para añadir tu primera película
+        </p>
       </div>
     </div>
 
-    <!-- Grid de películas 2 columnas -->
-    <div class="row row-cols-2 g-4" *ngIf="peliculas.length > 0">
-      <div class="col" *ngFor="let pelicula of peliculas">
-        <div class="card h-100 shadow-sm pelicula-card">
-          <div class="card-img-container">
-            <img 
-              [src]="pelicula.imagenUrl" 
-              class="card-img-top" 
+    <!-- Grid de películas responsive -->
+    <div class="row g-3" *ngIf="peliculas.length > 0">
+      <div class="col-6 col-md-4 col-lg-3" *ngFor="let pelicula of peliculas; let i = index">
+        <div class="card border-0 shadow-sm h-100 pelicula-card">
+          <div class="card-img-container position-relative">
+            <img
+              [src]="pelicula.imagenUrl"
+              class="card-img-top"
               [alt]="pelicula.nombre"
-              (error)="pelicula.imagenUrl = 'https://via.placeholder.com/300x450/007bff/ffffff?text=Imagen+No+Disponible'"
             >
+            <div class="position-absolute top-0 end-0 m-2">
+              <span class="badge bg-dark bg-opacity-75 small">#{{ i + 1 }}</span>
+            </div>
           </div>
-          <div class="card-body">
-            <h5 class="nombre-pelicula">{{ pelicula.nombre }}</h5>
+          <div class="card-body p-3">
+            <h6 class="nombre-pelicula fw-bold mb-0 text-truncate" [title]="pelicula.nombre">
+              {{ pelicula.nombre }}
+            </h6>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div><p>cartelera works!</p>
+</div>

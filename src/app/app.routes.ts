@@ -5,27 +5,27 @@ import { EliminarPeliculaComponent } from './eliminar-pelicula/eliminar-pelicula
 
 export const routes: Routes = [
   {
-    path: 'anadir-pelicula',  
+    path: 'anadir-pelicula',
     component: AnadirPeliculaComponent,
     title: 'Agregar Película'
   },
   {
-    path: 'cartelera',  
+    path: 'cartelera',
     component: CarteleraComponent,
     title: 'Cartelera'
   },
   {
-    path: 'eliminar-pelicula',  
+    path: 'eliminar-pelicula',
     component: EliminarPeliculaComponent,
     title: 'Eliminar Película'
   },
   {
     path: '',
-    redirectTo: 'cartelera',  
+    redirectTo: 'cartelera',
     pathMatch: 'full'
   },
   {
     path: '**',
-    redirectTo: 'cartelera' 
+    redirectTo: 'cartelera'
   }
 ];
