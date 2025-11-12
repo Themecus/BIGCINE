@@ -45,10 +45,10 @@ export class AnadirPeliculaComponent {
         imagenUrl: this.nuevaPelicula.imagenUrl,
         id: Date.now() // ID único
       });
-      
+
       // Guardar en LocalStorage después de agregar
       this.guardarPeliculasEnLocalStorage();
-      
+
       // Limpiar el formulario
       this.nuevaPelicula = {
         nombre: '',
