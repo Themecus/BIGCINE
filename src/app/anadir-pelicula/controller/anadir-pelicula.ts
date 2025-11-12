@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-anadir-pelicula',
-  templateUrl: './anadir-pelicula.html',
-  styleUrls: ['./anadir-pelicula.css'],
+ templateUrl: '../view/anadir-pelicula.html',  // ← Ruta relativa a la view
+  styleUrls: ['../view/anadir-pelicula.css'],   
   standalone: true,
   imports: [CommonModule, FormsModule]
 })

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EliminarPelicula } from './eliminar-pelicula';
+import { EliminarPeliculaComponent } from './controller/eliminar-pelicula';
 
 describe('EliminarPelicula', () => {
-  let component: EliminarPelicula;
-  let fixture: ComponentFixture<EliminarPelicula>;
+  let component: EliminarPeliculaComponent;
+  let fixture: ComponentFixture<EliminarPeliculaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EliminarPelicula]
+      imports: [EliminarPeliculaComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EliminarPelicula);
+    fixture = TestBed.createComponent(EliminarPeliculaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
