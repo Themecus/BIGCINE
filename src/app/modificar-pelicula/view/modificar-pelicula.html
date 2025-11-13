@@ -1,0 +1,236 @@
+<div class="modificar-page">
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <h1 class="hero-title">
+          <span class="cartelera-icon">✏️</span>
+          <span class="cartelera-nombre">MODIFICAR</span>
+          <span class="cartelera-destacado">PELÍCULAS</span>
+        </h1>
+        <p class="hero-subtitle">Selecciona una película para modificar sus datos</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="container mt-4">
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="card bg-warning text-dark">
+          <div class="card-body text-center">
+            <h5 class="card-title">Películas disponibles: {{ peliculas.length }}</h5>
+            <p class="card-text mb-2">Selecciona una película de la lista para modificar sus datos</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="peliculas.length === 0" class="text-center py-5">
+      <div class="alert alert-info">
+        <h4>🎬 ¡No hay películas para modificar!</h4>
+        <p class="mb-0">Ve a "Agregar" para añadir películas a tu cartelera.</p>
+      </div>
+    </div>
+
+    <div *ngIf="peliculas.length > 0">
+      <div class="row mb-5" *ngIf="!peliculaSeleccionada">
+        <div class="col-12">
+          <h3 class="text-center mb-4">Selecciona una película para modificar</h3>
+          <div class="row row-cols-2 g-4">
+            <div class="col" *ngFor="let pelicula of peliculas">
+              <div class="card h-100 shadow-sm pelicula-card modificar-card" 
+                   (click)="seleccionarPelicula(pelicula)">
+                <div class="card-img-container">
+                  <img 
+                    [src]="pelicula.imagenUrl" 
+                    class="card-img-top" 
+                    [alt]="pelicula.nombre"
+                    (error)="pelicula.imagenUrl = 'https://via.placeholder.com/300x450/ffc107/000000?text=MODIFICAR'"
+                  >
+                  <div class="modificar-overlay">
+                    <span class="modificar-text">✏️ MODIFICAR</span>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <h5 class="nombre-pelicula">{{ pelicula.nombre }}</h5>
+                  <p class="pelicula-meta mb-1">
+                    <strong>Género:</strong> {{ pelicula.genero || 'No especificado' }}
+                  </p>
+                  <p class="pelicula-meta mb-0">
+                    <strong>Duración:</strong> {{ formatearDuracion(pelicula.duracion) }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="peliculaSeleccionada" class="row">
+        <div class="col-12">
+          <div class="card shadow-lg">
+            <div class="card-header bg-primary text-white">
+              <h5 class="card-title mb-0">
+                ✏️ Modificando: <strong>{{ peliculaSeleccionada.nombre }}</strong>
+              </h5>
+            </div>
+            <div class="card-body">
+              <div class="row mb-4">
+                <div class="col-md-6">
+                  <h6>Vista previa actual:</h6>
+                  <div class="card">
+                    <div class="card-img-container-sm">
+                      <img 
+                        [src]="peliculaSeleccionada.imagenUrl" 
+                        class="card-img-top" 
+                        [alt]="peliculaSeleccionada.nombre"
+                      >
+                    </div>
+                    <div class="card-body">
+                      <h6 class="card-title">{{ peliculaSeleccionada.nombre }}</h6>
+                      <p class="card-text small mb-1">
+                        <strong>Género:</strong> {{ peliculaSeleccionada.genero }}
+                      </p>
+                      <p class="card-text small mb-0">
+                        <strong>Duración:</strong> {{ formatearDuracion(peliculaSeleccionada.duracion) }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <h6>Vista previa nueva:</h6>
+                  <div class="card">
+                    <div class="card-img-container-sm">
+                      <img 
+                        [src]="peliculaEditada.imagenUrl || peliculaSeleccionada.imagenUrl" 
+                        class="card-img-top" 
+                        [alt]="peliculaEditada.nombre"
+                        (error)="peliculaEditada.imagenUrl = 'https://via.placeholder.com/300x450/ffc107/000000?text=IMAGEN'"
+                      >
+                    </div>
+                    <div class="card-body">
+                      <h6 class="card-title">{{ peliculaEditada.nombre || peliculaSeleccionada.nombre }}</h6>
+                      <p class="card-text small mb-1">
+                        <strong>Género:</strong> {{ peliculaEditada.genero || peliculaSeleccionada.genero }}
+                      </p>
+                      <p class="card-text small mb-0">
+                        <strong>Duración:</strong> {{ formatearDuracion(peliculaEditada.duracion) || formatearDuracion(peliculaSeleccionada.duracion) }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row g-3">
+                <div class="col-12 col-md-6">
+                  <label for="nombreEditado" class="form-label fw-bold">Nombre de la Película</label>
+                  <input
+                    id="nombreEditado"
+                    type="text"
+                    class="form-control"
+                    placeholder="Ej: Avengers, Star Wars..."
+                    [(ngModel)]="peliculaEditada.nombre"
+                  >
+                </div>
+                <div class="col-12 col-md-6">
+                  <label for="imagenUrlEditada" class="form-label fw-bold">URL de la Imagen</label>
+                  <input
+                    id="imagenUrlEditada"
+                    type="text"
+                    class="form-control"
+                    placeholder="Ej: https://ejemplo.com/imagen.jpg"
+                    [(ngModel)]="peliculaEditada.imagenUrl"
+                  >
+                </div>
+                <div class="col-12 col-md-6">
+                  <label for="duracionEditada" class="form-label fw-bold">Duración</label>
+                  <input
+                    id="duracionEditada"
+                    type="text"
+                    class="form-control"
+                    placeholder="Ej: 2h 30min, 120 min, 1h 45m"
+                    [(ngModel)]="peliculaEditada.duracion"
+                  >
+                </div>
+                <div class="col-12 col-md-6">
+                  <label for="generoEditado" class="form-label fw-bold">Género</label>
+                  <select
+                    id="generoEditado"
+                    class="form-select"
+                    [(ngModel)]="peliculaEditada.genero"
+                  >
+                    <option value="">Selecciona un género</option>
+                    <option *ngFor="let genero of generos" [value]="genero">
+                      {{ genero }}
+                    </option>
+                    <option value="Otro">Otro</option>
+                  </select>
+                  <small class="text-muted"></small>
+                  <input
+                    *ngIf="peliculaEditada.genero === 'Otro'"
+                    type="text"
+                    class="form-control mt-2"
+                    placeholder="Escribe el género personalizado"
+                    [(ngModel)]="peliculaEditada.genero"
+                  >
+                </div>
+              </div>
+              
+              <small class="text-muted mt-2 d-block">
+                💡 Modifica los datos que necesites y guarda los cambios
+              </small>
+
+              <div class="d-flex gap-2 mt-4">
+                <button class="btn btn-secondary" (click)="cancelarEdicion()">
+                  ↩️ Cancelar
+                </button>
+                <button 
+                  class="btn btn-warning flex-grow-1"
+                  (click)="confirmarModificacion()"
+                  [disabled]="!peliculaEditada.nombre.trim() || !peliculaEditada.imagenUrl.trim()">
+                  💾 Guardar Cambios
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="mostrarConfirmacion" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">⚠️ Confirmar Modificación</h3>
+      </div>
+      <div class="modal-body">
+        <p>¿Estás seguro de que quieres modificar la película?</p>
+        <p class="h6 text-center text-warning fw-bold">
+          "{{ peliculaSeleccionada?.nombre }}"
+        </p>
+        <p class="small text-muted text-center">
+          Los cambios se aplicarán inmediatamente a la cartelera
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="cancelarModificacion()">Cancelar</button>
+        <button class="btn btn-warning" (click)="modificarPeliculaConfirmada()">
+          💾 Sí, Modificar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="mostrarExito" class="modal-overlay">
+    <div class="modal-content success-modal">
+      <div class="modal-header">
+        <h3 class="modal-title">✅ Modificación Exitosa</h3>
+      </div>
+      <div class="modal-body">
+        <p class="text-center mb-0">{{ mensajeExito }}</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" (click)="cerrarExito()">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
