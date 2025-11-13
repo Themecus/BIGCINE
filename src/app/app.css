@@ -12,54 +12,60 @@
 
 /* Barra de navegación */
 .navbar{
-	padding: 0.8rem 1.5rem;
+	padding: 0.6rem 1.2rem;
 	background: linear-gradient(90deg,var(--blue-700), var(--blue-500));
 	border-radius: var(--nav-radius);
 	box-shadow: var(--nav-shadow);
 	border: var(--nav-border);
-	margin: 1.2rem auto 2.2rem auto;
+	margin: 1rem auto 1.5rem auto;
 	max-width: 1100px;
 }
+
 .nav-buttons{
 	display:flex;
-	gap:1.6rem;
+	gap:1rem;
 	align-items:center;
 	justify-content:center;
 	width:100%;
 	max-width:900px;
 	margin:0 auto;
+	flex-wrap: wrap;
 }
-
 
 .nav-button{
 	display:inline-flex;
 	align-items:center;
 	justify-content:center;
-	padding:0.7rem 1.3rem;
+	padding:0.5rem 1rem;
 	color:var(--white);
 	text-decoration:none;
-	border-radius:12px;
-	font-weight:700;
-	font-size:1.05rem;
+	border-radius:10px;
+	font-weight:600;
+	font-size:0.85rem;
 	font-family: var(--nav-font);
-	box-shadow:0 10px 28px rgba(2,6,23,0.13);
+	box-shadow:0 8px 20px rgba(2,6,23,0.13);
 	border: 1.5px solid rgba(13,110,253,0.13);
 	transition:transform .16s cubic-bezier(.4,1.4,.6,1), box-shadow .16s, opacity .16s;
-	min-width:140px;
+	min-width:100px;
+	max-width:120px;
 	text-align:center;
-	letter-spacing:0.5px;
+	letter-spacing:0.3px;
 	outline:none;
+	flex: 1;
 }
+
 .nav-button:hover{
-	transform:translateY(-4px) scale(1.04);
+	transform:translateY(-3px) scale(1.03);
 	opacity:0.98;
-	box-shadow:0 16px 36px rgba(13,110,253,0.18);
+	box-shadow:0 12px 28px rgba(13,110,253,0.18);
 	border-color: var(--blue-500);
 }
+
 .nav-button.active{
-	box-shadow:0 18px 40px rgba(13,110,253,0.22);
+	box-shadow:0 14px 32px rgba(13,110,253,0.22);
 	border-color: var(--blue-700);
 	outline:2px solid rgba(255,255,255,0.12);
+	background: linear-gradient(180deg,var(--blue-900), var(--blue-700)) !important;
 }
 
 /* Colores por botón (coherentes con cartelera) */
@@ -70,20 +76,103 @@
 .nav-btn-modificar-pelicula{ background: linear-gradient(90deg,var(--blue-500), var(--blue-700)); }
 .nav-btn-modificar-snack{ background: linear-gradient(90deg,var(--blue-500), var(--blue-700)); }
 .nav-btn-anadir-cine{ background: linear-gradient(90deg,var(--blue-500), var(--blue-700)); }
+.nav-btn-anadir-snack{ background: linear-gradient(90deg,var(--blue-500), var(--blue-700)); }
+.nav-btn-eliminar-snack{ background: linear-gradient(90deg,var(--blue-500), var(--blue-700)); }
+.nav-btn-modificar-cine{ background: linear-gradient(90deg,var(--blue-500), var(--blue-700)); }
 
 /* Separadores visuales opcionales (pequeña barra) */
 .nav-buttons .separator{
 	width:2px;
-	height:32px;
+	height:24px;
 	background:rgba(255,255,255,0.18);
-	margin:0 10px;
+	margin:0 8px;
 	border-radius:2px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+	.nav-buttons {
+		gap: 0.8rem;
+	}
+	
+	.nav-button {
+		padding: 0.45rem 0.9rem;
+		font-size: 0.82rem;
+		min-width: 95px;
+		max-width: 110px;
+	}
 }
 
 /* Mobile tweak */
 @media (max-width:600px){
-	.navbar{ padding:0.5rem 0.5rem; border-radius:12px; }
-	.nav-buttons{ flex-wrap:wrap; gap:0.7rem; max-width:100%; }
-	.nav-button{ padding:0.45rem 0.8rem; font-size:0.97rem; min-width:110px; }
+	.navbar{ 
+		padding:0.5rem 0.8rem; 
+		border-radius:12px; 
+		margin: 0.8rem auto 1.2rem auto;
+	}
+	
+	.nav-buttons{ 
+		flex-wrap:wrap; 
+		gap:0.6rem; 
+		max-width:100%; 
+	}
+	
+	.nav-button{ 
+		padding:0.4rem 0.7rem; 
+		font-size:0.78rem; 
+		min-width:85px;
+		max-width:95px;
+		border-radius:8px;
+	}
+}
+
+@media (max-width: 480px) {
+	.nav-buttons {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 0.5rem;
+	}
+	
+	.nav-button {
+		min-width: auto;
+		max-width: none;
+		font-size: 0.75rem;
+		padding: 0.35rem 0.5rem;
+	}
+}
+
+/* Contenido de la página */
+.page-content {
+	padding: 1rem;
+	max-width: 1400px;
+	margin: 0 auto;
+	width: 100%;
+}
+
+/* Smooth scrolling */
+html {
+	scroll-behavior: smooth;
+}
+
+/* Mejoras de accesibilidad */
+.nav-button:focus {
+	outline: 2px solid rgba(255, 255, 255, 0.5);
+	outline-offset: 1px;
+}
+
+/* Efecto de carga suave */
+.nav-button {
+	animation: fadeInUp 0.4s ease-out;
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(8px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 

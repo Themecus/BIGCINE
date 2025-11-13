@@ -91,13 +91,7 @@ export class AnadirCineComponent implements OnInit {
     return this.nuevoCine.peliculasSeleccionadas.includes(peliculaId);
   }
 
-  // Eliminar cine
-  eliminarCine(cineId: number) {
-    if (confirm('¿Estás seguro de que quieres eliminar este cine?')) {
-      this.cines = this.cines.filter(cine => cine.id !== cineId);
-      this.guardarCines();
-    }
-  }
+
 
   // Función para manejar Enter en los inputs
   manejarEnter(event: KeyboardEvent) {

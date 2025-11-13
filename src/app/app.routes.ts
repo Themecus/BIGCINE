@@ -8,6 +8,7 @@ import { ModificarPeliculaComponent } from './back/controller/modificar-pelicula
 import { ModificarSnacksComponent } from './back/controller/modificar-snacks';
 import { EliminarSnackComponent } from './back/controller/eliminar-snack';
 import { AnadirCineComponent } from './back/controller/anadir-cine';
+import { ModificarCineComponent } from './back/controller/modificar-cine';
 
 
 
@@ -56,6 +57,11 @@ export const routes: Routes = [
     path: 'eliminar-snack',
     component: EliminarSnackComponent,
     title: 'Eliminar Snack' 
+  },
+  {
+    path: 'modificar-cine',
+    component: ModificarCineComponent,
+    title: 'Modificar Cine'   
   },
   {
     path: '',
