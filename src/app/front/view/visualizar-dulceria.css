@@ -1,0 +1,237 @@
+.visualizar-page {
+  background: linear-gradient(180deg, var(--blue-900) 0%, var(--blue-700) 60%);
+  min-height: 100vh;
+  color: var(--white);
+}
+
+.visualizar-page .hero {
+  padding: 2.5rem 0 2rem 0;
+  background: linear-gradient(90deg, #ffc107 0%, #ffb300 100%);
+  color: #000;
+  border-radius: 32px 32px 18px 18px;
+  box-shadow: 0 8px 32px rgba(255, 193, 7, 0.18);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.visualizar-page .hero::before {
+  content: '';
+  position: absolute;
+  left: -60px;
+  top: -60px;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, #063970 0%, rgba(6, 57, 112, 0.12) 80%);
+  opacity: 0.18;
+  z-index: 0;
+}
+
+.visualizar-page .hero-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.visualizar-page .hero-title {
+  font-size: 2rem;
+  margin: 0;
+  font-weight: 800;
+}
+
+.visualizar-page .cartelera-icon {
+  font-size: 2.2rem;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+  filter: drop-shadow(0 2px 2px rgba(255, 193, 7, 0.3));
+}
+
+.visualizar-page .cartelera-nombre {
+  font-family: 'Segoe UI', 'Montserrat', Arial, sans-serif;
+  font-size: 2.1rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #000;
+  text-shadow: 0 2px 8px rgba(255, 193, 7, 0.2);
+}
+
+.visualizar-page .cartelera-destacado {
+  color: #063970;
+  font-weight: 900;
+  font-size: 2.1rem;
+  margin-left: 0.3rem;
+  text-shadow: 0 2px 8px rgba(6, 57, 112, 0.2);
+}
+
+.visualizar-page .hero-subtitle {
+  margin: 0.7rem 0 0 0;
+  font-size: 1.15rem;
+  font-weight: 500;
+  opacity: 0.9;
+  letter-spacing: 0.5px;
+  color: #000;
+}
+
+/* Tarjetas de estadísticas */
+.stat-card {
+  border: none;
+  transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.stat-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.stat-number {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #063970;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #6c757d;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Secciones por categoría */
+.categoria-section {
+  margin-bottom: 2rem;
+}
+
+.categoria-header {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.categoria-title {
+  color: white;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.categoria-icon {
+  margin-right: 0.5rem;
+}
+
+/* Tarjetas de snacks */
+.snack-card {
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.snack-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-container {
+  height: 120px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.snack-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.snack-icon {
+  font-size: 3rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.snack-nombre {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a2530;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.snack-precio {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #28a745;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.snack-details {
+  font-size: 0.8rem;
+}
+
+/* Resumen general */
+.resumen-item {
+  padding: 1rem;
+}
+
+.resumen-number {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #063970;
+}
+
+.resumen-label {
+  font-size: 0.9rem;
+  color: #6c757d;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Badges */
+.badge {
+  font-size: 0.7rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .row-cols-md-5 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .row-cols-lg-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .categoria-title {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .row-cols-md-5 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .row-cols-2 {
+    grid-template-columns: 1fr;
+  }
+  
+  .resumen-number {
+    font-size: 1.4rem;
+  }
+}
+
+/* Colores para stock */
+.text-danger { color: #dc3545 !important; font-weight: bold; }
+.text-warning { color: #ffc107 !important; font-weight: bold; }
+.text-success { color: #28a745 !important; font-weight: bold; }

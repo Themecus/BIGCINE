@@ -1,0 +1,247 @@
+.visualizar-page {
+  background: linear-gradient(180deg, var(--blue-900) 0%, var(--blue-700) 60%);
+  min-height: 100vh;
+  color: var(--white);
+}
+
+.visualizar-page .hero {
+  padding: 2.5rem 0 2rem 0;
+  background: linear-gradient(90deg, #28a745 0%, #20c997 100%);
+  color: var(--white);
+  border-radius: 32px 32px 18px 18px;
+  box-shadow: 0 8px 32px rgba(40, 167, 69, 0.18);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.visualizar-page .hero::before {
+  content: '';
+  position: absolute;
+  left: -60px;
+  top: -60px;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, #ffe066 0%, rgba(255,224,102,0.12) 80%);
+  opacity: 0.18;
+  z-index: 0;
+}
+
+.visualizar-page .hero-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.visualizar-page .hero-title {
+  font-size: 2rem;
+  margin: 0;
+  font-weight: 800;
+}
+
+.visualizar-page .cartelera-icon {
+  font-size: 2.2rem;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+  filter: drop-shadow(0 2px 2px rgba(40, 167, 69, 0.18));
+}
+
+.visualizar-page .cartelera-nombre {
+  font-family: 'Segoe UI', 'Montserrat', Arial, sans-serif;
+  font-size: 2.1rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--white);
+  text-shadow: 0 2px 8px rgba(40, 167, 69, 0.18);
+}
+
+.visualizar-page .cartelera-destacado {
+  color: #ffe066;
+  font-weight: 900;
+  font-size: 2.1rem;
+  margin-left: 0.3rem;
+  text-shadow: 0 2px 8px rgba(40, 167, 69, 0.18);
+}
+
+.visualizar-page .hero-subtitle {
+  margin: 0.7rem 0 0 0;
+  font-size: 1.15rem;
+  font-weight: 500;
+  opacity: 0.93;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 6px rgba(40, 167, 69, 0.13);
+}
+
+/* Tarjetas de cines */
+.visualizar-card {
+  transition: all 0.3s ease;
+  border: none;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.visualizar-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3) !important;
+  border: 2px solid #28a745;
+}
+
+.card-img-container {
+  height: 200px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.cine-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.cine-icon-large {
+  font-size: 4rem;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}
+
+.visualizar-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(40, 167, 69, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.visualizar-card:hover .visualizar-overlay {
+  opacity: 1;
+}
+
+.visualizar-text {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Detalles del cine */
+.info-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.info-item {
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #28a745;
+}
+
+.stats-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: white;
+  border-radius: 10px;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* Tabla de películas */
+.pelicula-thumb {
+  width: 50px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.table th {
+  background: #28a745;
+  color: white;
+  border: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .row-cols-md-2 {
+    grid-template-columns: 1fr;
+  }
+  
+  .card-img-container {
+    height: 150px;
+  }
+  
+  .cine-icon-large {
+    font-size: 3rem;
+  }
+  
+  .visualizar-text {
+    font-size: 1rem;
+  }
+}
+
+/* Utilidades */
+.cartelera-container {
+  min-height: 400px;
+}
+
+.cine-nombre {
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 1rem 0;
+  color: #1a2530;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.cine-meta {
+  font-size: 0.9rem;
+  margin: 0;
+  color: #6c757d;
+  line-height: 1.4;
+}
+
+.card-body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.nav-btn-visualizar-cine { 
+  background: linear-gradient(90deg, #28a745, #20c997); 
+}

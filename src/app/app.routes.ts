@@ -9,6 +9,8 @@ import { ModificarSnacksComponent } from './back/controller/modificar-snacks';
 import { EliminarSnackComponent } from './back/controller/eliminar-snack';
 import { AnadirCineComponent } from './back/controller/anadir-cine';
 import { ModificarCineComponent } from './back/controller/modificar-cine';
+import { VisualizacionCineComponent } from './back/controller/visualizacion-cine';
+import { VisualizarDulceriaComponent } from './back/controller/visualizar-dulceria';
 
 
 
@@ -62,6 +64,16 @@ export const routes: Routes = [
     path: 'modificar-cine',
     component: ModificarCineComponent,
     title: 'Modificar Cine'   
+  },
+  {
+    path: 'visualizacion-cine',
+    component: VisualizacionCineComponent,
+    title: 'Visualizacion Cine'
+  },
+  {
+    path: 'visualizar-dulceria',
+    component: VisualizarDulceriaComponent,
+    title: 'Visualizar Dulceria'
   },
   {
     path: '',

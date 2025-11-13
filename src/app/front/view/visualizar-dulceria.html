@@ -1,0 +1,150 @@
+<div class="visualizar-page">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <h1 class="hero-title">
+          <span class="cartelera-icon">🍿</span>
+          <span class="cartelera-nombre">DULCERÍA</span>
+          <span class="cartelera-destacado">COMPLETA</span>
+        </h1>
+        <p class="hero-subtitle">Visualiza todos los snacks disponibles en tu dulcería</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="container mt-4">
+    <!-- Información de dulcería -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="card bg-warning text-dark">
+          <div class="card-body text-center">
+            <h5 class="card-title">Snacks disponibles: {{ snacks.length }}</h5>
+            <p class="card-text mb-2">
+              Valor total del inventario: <strong>{{ calcularValorTotalInventario() | currency }}</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Estadísticas por categoría -->
+    <div class="row mb-4" *ngIf="snacks.length > 0">
+      <div class="col-12">
+        <h4 class="text-center mb-3">📊 Estadísticas por Categoría</h4>
+        <div class="row row-cols-2 row-cols-md-5 g-3">
+          <div class="col" *ngFor="let cat of categorias">
+            <div class="card text-center stat-card">
+              <div class="card-body">
+                <div class="stat-icon">{{ getIconoCategoria(cat.value) }}</div>
+                <div class="stat-number">{{ getSnacksPorCategoria(cat.value).length }}</div>
+                <div class="stat-label">{{ cat.label.split(' ')[1] || cat.label }}</div>
+                <small class="text-muted">
+                  {{ calcularValorCategoria(cat.value) | currency }}
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lista de snacks por categoría -->
+    <div class="dulceria-container">
+      <!-- Mensaje cuando no hay snacks -->
+      <div *ngIf="snacks.length === 0" class="text-center py-5">
+        <div class="alert alert-info">
+          <h4>🍿 ¡No hay snacks en la dulcería!</h4>
+          <p class="mb-0">Ve a "Agregar Snack" para añadir productos a tu dulcería.</p>
+        </div>
+      </div>
+
+      <!-- Snacks organizados por categoría -->
+      <div *ngIf="snacks.length > 0">
+        <div *ngFor="let categoria of categorias" class="categoria-section">
+          <div class="categoria-header" *ngIf="getSnacksPorCategoria(categoria.value).length > 0">
+            <h3 class="categoria-title">
+              <span class="categoria-icon">{{ getIconoCategoria(categoria.value) }}</span>
+              {{ categoria.label }}
+              <span class="badge bg-primary ms-2">{{ getSnacksPorCategoria(categoria.value).length }}</span>
+            </h3>
+          </div>
+
+          <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3 mb-4" 
+               *ngIf="getSnacksPorCategoria(categoria.value).length > 0">
+            <div class="col" *ngFor="let snack of getSnacksPorCategoria(categoria.value)">
+              <div class="card h-100 shadow-sm snack-card">
+                <div class="card-img-container">
+                  <div class="snack-icon-container">
+                    <span class="snack-icon">{{ getIconoCategoria(snack.categoria) }}</span>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <h6 class="snack-nombre">{{ snack.nombre }}</h6>
+                  <p class="snack-precio">{{ snack.precio | currency }}</p>
+                  <div class="snack-details">
+                    <small class="text-muted d-block">
+                      <strong>Stock:</strong> 
+                      <span [class.text-danger]="snack.stock < 5" 
+                            [class.text-warning]="snack.stock >= 5 && snack.stock < 10"
+                            [class.text-success]="snack.stock >= 10">
+                        {{ snack.stock }} unidades
+                      </span>
+                    </small>
+                    <small class="text-muted d-block" *ngIf="snack.descripcion">
+                      {{ snack.descripcion }}
+                    </small>
+                  </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                  <small class="text-muted">
+                    Valor: {{ (snack.precio * snack.stock) | currency }}
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resumen general -->
+    <div class="row mt-5" *ngIf="snacks.length > 0">
+      <div class="col-12">
+        <div class="card bg-light">
+          <div class="card-header">
+            <h5 class="mb-0">📈 Resumen General de la Dulcería</h5>
+          </div>
+          <div class="card-body">
+            <div class="row text-center">
+              <div class="col-md-3 mb-3">
+                <div class="resumen-item">
+                  <div class="resumen-number">{{ snacks.length }}</div>
+                  <div class="resumen-label">Total Snacks</div>
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <div class="resumen-item">
+                  <div class="resumen-number">{{ getTotalStock() }}</div>
+                  <div class="resumen-label">Unidades Totales</div>
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <div class="resumen-item">
+                  <div class="resumen-number">{{ calcularValorTotalInventario() | currency }}</div>
+                  <div class="resumen-label">Valor Inventario</div>
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <div class="resumen-item">
+                  <div class="resumen-number">{{ getCategoriasConSnacks().length }}</div>
+                  <div class="resumen-label">Categorías Activas</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,162 @@
+<div class="visualizar-page">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <h1 class="hero-title">
+          <span class="cartelera-icon">🎭</span>
+          <span class="cartelera-nombre">VISUALIZAR</span>
+          <span class="cartelera-destacado">CINES</span>
+        </h1>
+        <p class="hero-subtitle">Selecciona un cine para ver sus detalles y películas disponibles</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="container mt-4">
+    <!-- Información de cines -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="card bg-primary text-white">
+          <div class="card-body text-center">
+            <h5 class="card-title">Cines disponibles: {{ cines.length }}</h5>
+            <p class="card-text mb-2">Haz clic en cualquier cine para ver sus detalles completos</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lista de cines -->
+    <div class="cartelera-container">
+      <!-- Mensaje cuando no hay cines -->
+      <div *ngIf="cines.length === 0" class="text-center py-5">
+        <div class="alert alert-info">
+          <h4>🎭 ¡No hay cines para visualizar!</h4>
+          <p class="mb-0">Ve a "Agregar Cine" para añadir cines a tu sistema.</p>
+        </div>
+      </div>
+
+      <!-- Grid de cines -->
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" *ngIf="cines.length > 0">
+        <div class="col" *ngFor="let cine of cines">
+          <div class="card h-100 shadow-sm cine-card visualizar-card" 
+               (click)="seleccionarCine(cine)">
+            <div class="card-img-container">
+              <div class="cine-icon-container">
+                <span class="cine-icon-large">🎭</span>
+              </div>
+              <div class="visualizar-overlay">
+                <span class="visualizar-text">👁️ VER DETALLES</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h5 class="cine-nombre">{{ cine.nombre }}</h5>
+              <p class="cine-meta mb-1">
+                <strong>📍 Ubicación:</strong> {{ cine.ubicacion }}
+              </p>
+              <p class="cine-meta mb-1">
+                <strong>🎬 Películas:</strong> {{ cine.peliculas?.length || 0 }}
+              </p>
+              <p class="cine-meta mb-0 text-muted small">
+                <em>Click para ver detalles</em>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detalles del cine seleccionado -->
+    <div *ngIf="cineSeleccionado" class="row mt-5">
+      <div class="col-12">
+        <div class="card shadow-lg">
+          <div class="card-header bg-success text-white">
+            <h4 class="card-title mb-0">
+              🎭 Detalles de: <strong>{{ cineSeleccionado.nombre }}</strong>
+              <button class="btn btn-sm btn-light float-end" (click)="cerrarDetalles()">
+                ✕ Cerrar
+              </button>
+            </h4>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <!-- Información del cine -->
+              <div class="col-md-6">
+                <h5>📋 Información del Cine</h5>
+                <div class="info-grid">
+                  <div class="info-item">
+                    <strong>🏢 Nombre:</strong> {{ cineSeleccionado.nombre }}
+                  </div>
+                  <div class="info-item">
+                    <strong>📍 Ubicación:</strong> {{ cineSeleccionado.ubicacion }}
+                  </div>
+                  <div class="info-item">
+                    <strong>📅 Fecha de creación:</strong> {{ cineSeleccionado.fechaCreacion || 'No especificada' }}
+                  </div>
+                  <div class="info-item">
+                    <strong>🎬 Total de películas:</strong> {{ cineSeleccionado.peliculas?.length || 0 }}
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Estadísticas -->
+              <div class="col-md-6">
+                <h5>📊 Estadísticas</h5>
+                <div class="stats-grid">
+                <div class="stat-item">
+                  <div class="stat-number">{{ getGenerosUnicos().length }}</div>
+                  <div class="stat-label">Géneros diferentes</div>
+                </div>
+                  <div class="stat-item">
+                    <div class="stat-number">{{ getGenerosUnicos().length }}</div>
+                    <div class="stat-label">Géneros diferentes</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Lista de películas -->
+            <div class="row mt-4" *ngIf="cineSeleccionado.peliculas && cineSeleccionado.peliculas.length > 0">
+              <div class="col-12">
+                <h5>🎬 Películas Disponibles</h5>
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Poster</th>
+                        <th>Nombre</th>
+                        <th>Género</th>
+                        <th>Duración</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let pelicula of cineSeleccionado.peliculas">
+                        <td>
+                          <img [src]="pelicula.imagenUrl" 
+                               [alt]="pelicula.nombre"
+                               class="pelicula-thumb"
+                               (error)="pelicula.imagenUrl = 'https://via.placeholder.com/50x75/007bff/ffffff?text=P'">
+                        </td>
+                        <td><strong>{{ pelicula.nombre }}</strong></td>
+                        <td>{{ pelicula.genero || 'No especificado' }}</td>
+                        <td>{{ pelicula.duracion || 'No especificada' }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mensaje si no hay películas -->
+            <div *ngIf="!cineSeleccionado.peliculas || cineSeleccionado.peliculas.length === 0" class="text-center py-4">
+              <div class="alert alert-warning">
+                <h6>⚠️ No hay películas asignadas</h6>
+                <p class="mb-0">Este cine no tiene películas en su cartelera actualmente.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
