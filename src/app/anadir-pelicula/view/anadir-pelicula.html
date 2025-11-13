@@ -1,5 +1,4 @@
 <div class="agregar-page">
-  <!-- Hero Section con el estilo de cartelera -->
   <section class="hero">
     <div class="hero-inner">
       <div>
@@ -17,7 +16,8 @@
     <div class="card shadow-lg mb-5">
       <div class="card-body">
         <div class="row g-3">
-          <div class="col-12 col-md-5">
+
+          <div class="col-12 col-md-6">
             <label for="nombrePelicula" class="form-label fw-bold">Nombre de la Película</label>
             <input
               id="nombrePelicula"
@@ -28,7 +28,9 @@
               (keypress)="manejarEnter($event)"
             >
           </div>
-          <div class="col-12 col-md-5">
+          
+ 
+          <div class="col-12 col-md-6">
             <label for="imagenUrl" class="form-label fw-bold">URL de la Imagen</label>
             <input
               id="imagenUrl"
@@ -39,13 +41,59 @@
               (keypress)="manejarEnter($event)"
             >
           </div>
-          <div class="col-12 col-md-2 d-flex align-items-end">
+          
+
+          <div class="col-12 col-md-6">
+            <label for="generoPelicula" class="form-label fw-bold">Género</label>
+            <select
+              id="generoPelicula"
+              class="form-select"
+              [(ngModel)]="nuevaPelicula.genero"
+            >
+              <option value="">Selecciona un género</option>
+              <option value="Acción">Acción</option>
+              <option value="Aventura">Aventura</option>
+              <option value="Comedia">Comedia</option>
+              <option value="Drama">Drama</option>
+              <option value="Ciencia Ficción">Ciencia Ficción</option>
+              <option value="Fantasía">Fantasía</option>
+              <option value="Terror">Terror</option>
+              <option value="Romance">Romance</option>
+              <option value="Suspenso">Suspenso</option>
+              <option value="Animación">Animación</option>
+              <option value="Documental">Documental</option>
+              <option value="Musical">Musical</option>
+              <option value="Crimen">Crimen</option>
+              <option value="Bélico">Bélico</option>
+              <option value="Western">Western</option>
+              <option value="Biografía">Biografía</option>
+              <option value="Histórico">Histórico</option>
+              <option value="Deportes">Deportes</option>
+              <option value="Familia">Familia</option>
+            </select>
+          </div>
+          
+
+          <div class="col-12 col-md-6">
+            <label for="duracionPelicula" class="form-label fw-bold">Duración</label>
+            <input
+              id="duracionPelicula"
+              type="text"
+              class="form-control"
+              placeholder="Ej: 2h 15min, 120 min"
+              [(ngModel)]="nuevaPelicula.duracion"
+              (keypress)="manejarEnter($event)"
+            >
+          </div>
+          
+
+          <div class="col-12">
             <button
-              class="btn btn-success w-100"
+              class="btn btn-success w-100 py-2 fw-bold"
               (click)="agregarPelicula()"
               [disabled]="!nuevaPelicula.nombre.trim() || !nuevaPelicula.imagenUrl.trim()"
             >
-              Agregar
+              🎬 Agregar Película
             </button>
           </div>
         </div>
@@ -55,7 +103,6 @@
       </div>
     </div>
 
-    <!-- Mensaje de películas agregadas -->
     <div class="text-center mt-4">
       <div class="alert alert-info">
         <h5>Total de películas en cartelera: {{ peliculas.length }}</h5>
