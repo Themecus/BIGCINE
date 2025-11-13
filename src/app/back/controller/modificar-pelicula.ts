@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-modificar-pelicula',
-  templateUrl: '../view/modificar-pelicula.html',
-  styleUrls: ['../view/modificar-pelicula.css'],
+  templateUrl: '../../front/view/modificar-pelicula.html',
+  styleUrls: ['../../front/view/modificar-pelicula.css'],
   standalone: true,
   imports: [CommonModule, FormsModule]
 })

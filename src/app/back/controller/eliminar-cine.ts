@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 
 @Component({
 	selector: 'app-eliminar-cine',
-	templateUrl: '../view/eliminar-cine.html',
-	styleUrls: ['../view/eliminar-cine.css'],
+	templateUrl: '../../front/view/eliminar-cine.html',
+	styleUrls: ['../../front/view/eliminar-cine.css'],
 	standalone: true,
 	imports: [CommonModule]
 })
