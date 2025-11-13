@@ -1,0 +1,102 @@
+.eliminar-page {
+    font-family: Arial, sans-serif;
+}
+
+.hero {
+    background-color: #dc3545;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+.container {
+    padding: 1rem;
+}
+
+.cines-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.cine-card {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    background-color: #f8d7da;
+}
+
+.cine-card button {
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #c82333;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cine-card button:hover {
+    background-color: #a71d2a;
+}
+
+.btn-eliminar-todos {
+    margin-top: 1rem;
+    padding: 0.7rem 1.5rem;
+    background-color: #b71c1c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-eliminar-todos:hover {
+    background-color: #7f1414;
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+}
+
+.modal-content.success {
+    border: 2px solid #28a745;
+}
+
+.modal-buttons button {
+    margin: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.modal-buttons button:nth-child(1) {
+    background-color: #6c757d;
+    color: white;
+}
+
+.modal-buttons button:nth-child(2),
+.modal-buttons button:nth-child(3) {
+    background-color: #dc3545;
+    color: white;
+}
