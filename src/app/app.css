@@ -67,6 +67,7 @@
 .nav-btn-anadir{ background: linear-gradient(180deg,#0b84ff, var(--blue-500)); }
 .nav-btn-eliminar{ background: linear-gradient(180deg,var(--blue-900), var(--blue-700)); }
 .nav-btn-eliminar-cine{ background: linear-gradient(90deg,var(--blue-500), var(--blue-700)); }
+.nav-btn-modificar-pelicula{ background: linear-gradient(90deg,var(--blue-500), var(--blue-700)); }
 
 /* Separadores visuales opcionales (pequeña barra) */
 .nav-buttons .separator{
