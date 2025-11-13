@@ -1,102 +1,394 @@
+/* Solo agregar estos estilos al inicio de tu CSS existente */
 .eliminar-page {
-    font-family: Arial, sans-serif;
+  background: linear-gradient(180deg, var(--blue-900) 0%, var(--blue-700) 60%);
+  min-height: 100vh;
+  color: var(--white);
 }
 
-.hero {
-    background-color: #dc3545;
-    color: white;
-    padding: 2rem;
-    text-align: center;
+.eliminar-page .hero {
+  padding: 2.5rem 0 2rem 0;
+  background: linear-gradient(90deg, #dc3545 0%, #c82333 100%);
+  color: var(--white);
+  border-radius: 32px 32px 18px 18px;
+  box-shadow: 0 8px 32px rgba(220, 53, 69, 0.18);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2rem;
 }
 
-.container {
-    padding: 1rem;
+.eliminar-page .hero::before {
+  content: '';
+  position: absolute;
+  left: -60px;
+  top: -60px;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, #ffe066 0%, rgba(255,224,102,0.12) 80%);
+  opacity: 0.18;
+  z-index: 0;
 }
 
-.cines-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+.eliminar-page .hero-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.eliminar-page .hero-title {
+  font-size: 2rem;
+  margin: 0;
+  font-weight: 800;
+}
+
+.eliminar-page .cartelera-icon {
+  font-size: 2.2rem;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+  filter: drop-shadow(0 2px 2px rgba(220, 53, 69, 0.18));
+}
+
+.eliminar-page .cartelera-nombre {
+  font-family: 'Segoe UI', 'Montserrat', Arial, sans-serif;
+  font-size: 2.1rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--white);
+  text-shadow: 0 2px 8px rgba(220, 53, 69, 0.18);
+}
+
+.eliminar-page .cartelera-destacado {
+  color: #ffe066;
+  font-weight: 900;
+  font-size: 2.1rem;
+  margin-left: 0.3rem;
+  text-shadow: 0 2px 8px rgba(220, 53, 69, 0.18);
+}
+
+.eliminar-page .hero-subtitle {
+  margin: 0.7rem 0 0 0;
+  font-size: 1.15rem;
+  font-weight: 500;
+  opacity: 0.93;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 6px rgba(220, 53, 69, 0.13);
+}
+
+/* El resto de tu CSS ORIGINAL se mantiene igual */
+.cartelera-container {
+  min-height: 400px;
+}
+
+/* Fuerza 2 columnas en todos los dispositivos */
+.row.row-cols-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.row.row-cols-2 .col {
+  width: 100%;
+  min-width: 0;
+}
+
+/* Estilos de las tarjetas para eliminar */
+.eliminar-card {
+  transition: all 0.3s ease;
+  border: none;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.eliminar-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 25px rgba(220, 53, 69, 0.3) !important;
+  border: 2px solid #dc3545;
+}
+
+.card-img-container {
+  height: 200px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.cine-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.cine-icon-large {
+  font-size: 4rem;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}
+
+/* Overlay para eliminar */
+.eliminar-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(220, 53, 69, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.eliminar-card:hover .eliminar-overlay {
+  opacity: 1;
+}
+
+.eliminar-text {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* ESTILOS MEJORADOS PARA EL NOMBRE DEL CINE */
+.card-body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.cine-nombre {
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 1rem 0;
+  color: #1a2530;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.cine-meta {
+  font-size: 0.9rem;
+  margin: 0;
+  color: #6c757d;
+  line-height: 1.4;
+}
+
+/* ANIMACIÓN DE EXPLOSIÓN */
+@keyframes explosion {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+    display: none;
+  }
+}
+
+.exploding {
+  animation: explosion 0.5s ease-out forwards;
+  pointer-events: none;
+}
+
+/* Efecto de partículas (simulado con box-shadow) */
+.exploding::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle, #ff6b6b, #ff8e8e, #ffaaaa);
+  opacity: 0;
+  animation: particleEffect 0.5s ease-out;
+  z-index: 10;
+  border-radius: 8px;
+}
+
+@keyframes particleEffect {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+/* Botón de eliminar */
+.btn-danger {
+  background: linear-gradient(45deg, #dc3545, #c82333);
+  border: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+  background: linear-gradient(45deg, #c82333, #a71e2a);
+  transform: scale(1.05);
+}
+
+/* Icono en modal */
+.cine-modal-icon {
+  font-size: 3rem;
+  display: inline-block;
+  animation: bounce 0.5s ease;
+}
+
+@keyframes bounce {
+  0%, 20%, 60%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  80% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Para móviles muy pequeños */
+@media (max-width: 576px) {
+  .row.row-cols-2 {
+    grid-template-columns: 1fr 1fr;
     gap: 1rem;
+  }
+  
+  .card-img-container {
+    height: 150px;
+  }
+  
+  .cine-icon-large {
+    font-size: 3rem;
+  }
+  
+  .cine-nombre {
+    font-size: 1.1rem;
+  }
+  
+  .eliminar-text {
+    font-size: 1rem;
+  }
 }
 
-.cine-card {
-    border: 1px solid #ccc;
-    padding: 1rem;
-    border-radius: 8px;
-    text-align: center;
-    background-color: #f8d7da;
-}
-
-.cine-card button {
-    margin-top: 0.5rem;
-    padding: 0.5rem 1rem;
-    border: none;
-    background-color: #c82333;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.cine-card button:hover {
-    background-color: #a71d2a;
-}
-
-.btn-eliminar-todos {
-    margin-top: 1rem;
-    padding: 0.7rem 1.5rem;
-    background-color: #b71c1c;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.btn-eliminar-todos:hover {
-    background-color: #7f1414;
-}
-
-/* Modal */
+/* Estilos para ventanas emergentes */
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
 }
 
 .modal-content {
-    background-color: white;
-    padding: 1.5rem;
-    border-radius: 8px;
-    text-align: center;
-    width: 90%;
-    max-width: 400px;
+  background: white;
+  border-radius: 10px;
+  padding: 0;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  animation: slideIn 0.3s ease;
 }
 
-.modal-content.success {
-    border: 2px solid #28a745;
+.success-modal {
+  border: 3px solid #28a745;
 }
 
-.modal-buttons button {
-    margin: 0.5rem;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
+.modal-header {
+  padding: 1.5rem 1.5rem 0;
+  border-bottom: none;
 }
 
-.modal-buttons button:nth-child(1) {
-    background-color: #6c757d;
-    color: white;
+.modal-title {
+  margin: 0;
+  color: #333;
+  font-size: 1.5rem;
 }
 
-.modal-buttons button:nth-child(2),
-.modal-buttons button:nth-child(3) {
-    background-color: #dc3545;
-    color: white;
+.success-modal .modal-title {
+  color: #28a745;
+}
+
+.modal-body {
+  padding: 1.5rem;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.modal-footer {
+  padding: 0 1.5rem 1.5rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  border-top: none;
+}
+
+/* Animaciones para modales */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { 
+    opacity: 0;
+    transform: translateY(-50px) scale(0.9);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Botones de modal */
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
 }

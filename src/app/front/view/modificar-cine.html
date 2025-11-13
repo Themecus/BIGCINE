@@ -1,0 +1,234 @@
+<div class="modificar-page">
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <h1 class="hero-title">
+          <span class="cartelera-icon">✏️</span>
+          <span class="cartelera-nombre">MODIFICAR</span>
+          <span class="cartelera-destacado">CINES</span>
+        </h1>
+        <p class="hero-subtitle">Selecciona un cine para modificar sus datos</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="container mt-4">
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="card bg-warning text-dark">
+          <div class="card-body text-center">
+            <h5 class="card-title">Cines disponibles: {{ cines.length }}</h5>
+            <p class="card-text mb-2">Selecciona un cine de la lista para modificar sus datos</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="cines.length === 0" class="text-center py-5">
+      <div class="alert alert-info">
+        <h4>🎭 ¡No hay cines para modificar!</h4>
+        <p class="mb-0">Ve a "Agregar Cine" para añadir cines a tu sistema.</p>
+      </div>
+    </div>
+
+    <div *ngIf="cines.length > 0">
+      <div class="row mb-5" *ngIf="!cineSeleccionado">
+        <div class="col-12">
+          <h3 class="text-center mb-4">Selecciona un cine para modificar</h3>
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <div class="col" *ngFor="let cine of cines">
+              <div class="card h-100 shadow-sm cine-card modificar-card" 
+                   (click)="seleccionarCine(cine)">
+                <div class="card-body text-center">
+                  <div class="cine-icon mb-3">
+                    🎭
+                  </div>
+                  <h5 class="cine-nombre">{{ cine.nombre }}</h5>
+                  <p class="cine-meta mb-2">
+                    <strong>📍 Ubicación:</strong> {{ cine.ubicacion }}
+                  </p>
+                  <p class="cine-meta mb-2">
+                    <strong>🎬 Películas:</strong> {{ cine.peliculas?.length || 0 }}
+                  </p>
+                  <p class="cine-meta mb-0 text-muted small">
+                    <em>Click para modificar</em>
+                  </p>
+                </div>
+                <div class="modificar-overlay">
+                  <span class="modificar-text">✏️ MODIFICAR</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="cineSeleccionado" class="row">
+        <div class="col-12">
+          <div class="card shadow-lg">
+            <div class="card-header bg-primary text-white">
+              <h5 class="card-title mb-0">
+                ✏️ Modificando: <strong>{{ cineSeleccionado.nombre }}</strong>
+              </h5>
+            </div>
+            <div class="card-body">
+              <div class="row mb-4">
+                <div class="col-md-6">
+                  <h6>Datos actuales:</h6>
+                  <div class="card bg-light">
+                    <div class="card-body">
+                      <h6 class="card-title">{{ cineSeleccionado.nombre }}</h6>
+                      <p class="card-text mb-2">
+                        <strong>📍 Ubicación:</strong> {{ cineSeleccionado.ubicacion }}
+                      </p>
+                      <p class="card-text mb-2">
+                        <strong>🎬 Películas:</strong> {{ getPeliculasCineCount() }}
+                      </p>
+                      <p class="card-text small text-muted mb-0">
+                        Creado: {{ cineSeleccionado.fechaCreacion }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <h6>Nuevos datos:</h6>
+                  <div class="card bg-light">
+                    <div class="card-body">
+                      <h6 class="card-title">{{ cineEditado.nombre || cineSeleccionado.nombre }}</h6>
+                      <p class="card-text mb-2">
+                        <strong>📍 Ubicación:</strong> {{ cineEditado.ubicacion || cineSeleccionado.ubicacion }}
+                      </p>
+                      <p class="card-text mb-2">
+                        <strong>🎬 Películas:</strong> {{ getPeliculasSeleccionadasCount() }}
+                      </p>
+                      <p class="card-text small text-success mb-0">
+                        <strong>Modificado hoy</strong>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row g-3">
+                <div class="col-12 col-md-6">
+                  <label for="nombreEditado" class="form-label fw-bold">Nombre del Cine</label>
+                  <input
+                    id="nombreEditado"
+                    type="text"
+                    class="form-control"
+                    placeholder="Ej: Cineplex, Movie Theater..."
+                    [(ngModel)]="cineEditado.nombre"
+                  >
+                </div>
+                <div class="col-12 col-md-6">
+                  <label for="ubicacionEditada" class="form-label fw-bold">Ubicación</label>
+                  <input
+                    id="ubicacionEditada"
+                    type="text"
+                    class="form-control"
+                    placeholder="Ej: Centro Comercial, Avenida Principal..."
+                    [(ngModel)]="cineEditado.ubicacion"
+                  >
+                </div>
+                
+                <div class="col-12">
+                  <label class="form-label fw-bold">🎬 Seleccionar Películas</label>
+                  <div class="alert alert-info">
+                    <small>
+                      <strong>💡 Información:</strong> Selecciona las películas que estarán disponibles en este cine.
+                      Actualmente seleccionadas: <strong>{{ getPeliculasSeleccionadasCount() }}</strong> películas.
+                    </small>
+                  </div>
+                  
+                  <div class="row g-2">
+                    <div class="col-12 col-sm-6 col-md-4" *ngFor="let pelicula of peliculasDisponibles">
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          [id]="'pelicula-' + pelicula.id"
+                          [checked]="estaSeleccionada(pelicula.id)"
+                          (change)="togglePeliculaSeleccionada(pelicula.id)"
+                        >
+                        <label class="form-check-label" [for]="'pelicula-' + pelicula.id">
+                          {{ pelicula.nombre }}
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div *ngIf="peliculasDisponibles.length === 0" class="text-center py-3">
+                    <p class="text-muted mb-0">No hay películas disponibles. Agrega películas primero.</p>
+                  </div>
+                </div>
+              </div>
+              
+              <small class="text-muted mt-2 d-block">
+                💡 Modifica los datos que necesites y guarda los cambios
+              </small>
+
+              <div class="d-flex gap-2 mt-4">
+                <button class="btn btn-secondary" (click)="cancelarEdicion()">
+                  ↩️ Cancelar
+                </button>
+                <button 
+                  class="btn btn-warning flex-grow-1"
+                  (click)="confirmarModificacion()"
+                  [disabled]="!cineEditado.nombre.trim() || !cineEditado.ubicacion.trim()">
+                  💾 Guardar Cambios
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ventana de Confirmación -->
+  <div *ngIf="mostrarConfirmacion" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">⚠️ Confirmar Modificación</h3>
+      </div>
+      <div class="modal-body">
+        <p>¿Estás seguro de que quieres modificar el cine?</p>
+        <p class="h6 text-center text-warning fw-bold">
+          "{{ cineSeleccionado?.nombre }}"
+        </p>
+        <div class="alert alert-warning mt-3">
+          <small>
+            <strong>📝 Cambios:</strong><br>
+            • Nombre: {{ cineSeleccionado?.nombre }} → {{ cineEditado.nombre }}<br>
+            • Ubicación: {{ cineSeleccionado?.ubicacion }} → {{ cineEditado.ubicacion }}<br>
+            • Películas: {{ getPeliculasCineCount() }} → {{ getPeliculasSeleccionadasCount() }}
+          </small>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="cancelarModificacion()">Cancelar</button>
+        <button class="btn btn-warning" (click)="modificarCineConfirmado()">
+          💾 Sí, Modificar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ventana de Éxito -->
+  <div *ngIf="mostrarExito" class="modal-overlay">
+    <div class="modal-content success-modal">
+      <div class="modal-header">
+        <h3 class="modal-title">✅ Modificación Exitosa</h3>
+      </div>
+      <div class="modal-body text-center">
+        <div class="success-icon mb-3">
+          🎉
+        </div>
+        <p class="mb-0">{{ mensajeExito }}</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" (click)="cerrarExito()">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>

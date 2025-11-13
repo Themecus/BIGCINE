@@ -2,78 +2,102 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';  // Necesario para *ngIf y *ngFor
 
 @Component({
-    selector: 'app-eliminar-cine',
-    templateUrl: '../../front/view/eliminar-cine.html',
-    styleUrls: ['../../front/view/eliminar-cine.css'],
-    standalone: true,
-  imports: [CommonModule]  // <-- Importamos CommonModule
+  selector: 'app-eliminar-cine',
+  templateUrl: '../../front/view/eliminar-cine.html',
+  styleUrls: ['../../front/view/eliminar-cine.css'],
+  standalone: true,
+  imports: [CommonModule]
 })
 export class EliminarCineComponent implements OnInit {
+  // Array para almacenar los cines
+  cines: any[] = [];
 
-    cines: any[] = [];
+  // Variables para las ventanas emergentes
+  mostrarConfirmacion = false;
+  mostrarExito = false;
+  cineAEliminar: any = null;
+  mensajeExito = '';
 
-  // Modales
-    mostrarConfirmacion: boolean = false;
-    cineAEliminar: any = null;
-    mostrarExito!: boolean;
-    mensajeExito!: string;
+  ngOnInit() {
+    this.cargarCinesDesdeLocalStorage();
+  }
 
-    ngOnInit() {
-    this.mostrarExito = false;
-    this.mensajeExito = '';
-    this.cargarCines();
-    }
-
-    cargarCines() {
+  cargarCinesDesdeLocalStorage() {
     const cinesGuardados = localStorage.getItem('cines');
-    this.cines = cinesGuardados ? JSON.parse(cinesGuardados) : [];
+    if (cinesGuardados) {
+      this.cines = JSON.parse(cinesGuardados);
     }
+  }
 
-    guardarCines() {
+  guardarCinesEnLocalStorage() {
     localStorage.setItem('cines', JSON.stringify(this.cines));
-    }
+  }
 
-  // Obtener texto de películas
-    getPeliculasTexto(cine: any): string {
-    if (!cine.peliculas || cine.peliculas.length === 0) return '';
-    return cine.peliculas.map((p: any) => p.nombre).join(', ');
-    }
-
-    confirmarEliminacion(cine: any) {
+  confirmarEliminacion(cine: any) {
     this.cineAEliminar = cine;
     this.mostrarConfirmacion = true;
-    }
+  }
 
-    confirmarEliminarTodos() {
-    this.cineAEliminar = { id: 'all' };
-    this.mostrarConfirmacion = true;
+  eliminarCineConfirmado() {
+    if (this.cineAEliminar) {
+      // Agregar clase de explosión
+      const card = document.querySelector(`[data-cine-id="${this.cineAEliminar.id}"]`);
+      if (card) {
+        card.classList.add('exploding');
+        
+        // Esperar a que termine la animación y luego eliminar
+        setTimeout(() => {
+          this.cines = this.cines.filter(c => c.id !== this.cineAEliminar.id);
+          this.guardarCinesEnLocalStorage();
+          
+          // Mostrar mensaje de éxito
+          this.mensajeExito = `"${this.cineAEliminar.nombre}" ha sido eliminado correctamente`;
+          this.mostrarExito = true;
+          
+          // Cerrar ventana de confirmación
+          this.mostrarConfirmacion = false;
+          this.cineAEliminar = null;
+        }, 500);
+      }
     }
+  }
 
-    cancelarEliminacion() {
+  cancelarEliminacion() {
+    this.mostrarConfirmacion = false;
     this.cineAEliminar = null;
-    this.mostrarConfirmacion = false;
-    }
+  }
 
-    eliminarCineConfirmado() {
-    if (!this.cineAEliminar) return;
-    this.cines = this.cines.filter(c => c.id !== this.cineAEliminar.id);
-    this.guardarCines();
-    this.mostrarConfirmacion = false;
-    this.mensajeExito = `El cine "${this.cineAEliminar.nombre}" ha sido eliminado correctamente.`;
-    this.mostrarExito = true;
-    this.cineAEliminar = null;
-    }
-
-    eliminarTodosConfirmados() {
-    this.cines = [];
-    this.guardarCines();
-    this.mostrarConfirmacion = false;
-    this.mensajeExito = 'Todos los cines han sido eliminados correctamente.';
-    this.mostrarExito = true;
-    }
-
-    cerrarExito() {
+  cerrarExito() {
     this.mostrarExito = false;
     this.mensajeExito = '';
+  }
+
+  confirmarEliminarTodos() {
+    if (this.cines.length > 0) {
+      this.mostrarConfirmacion = true;
+      this.cineAEliminar = { nombre: 'todos los cines', id: 'all' };
     }
+  }
+
+  eliminarTodosConfirmados() {
+    // Animación para todas las tarjetas
+    const cards = document.querySelectorAll('.cine-card');
+    cards.forEach(card => {
+      card.classList.add('exploding');
+    });
+    
+    // Esperar a que terminen las animaciones y luego eliminar todo
+    setTimeout(() => {
+      this.cines = [];
+      this.guardarCinesEnLocalStorage();
+      
+      // Mostrar mensaje de éxito
+      this.mensajeExito = 'Todos los cines han sido eliminados correctamente';
+      this.mostrarExito = true;
+      
+      // Cerrar ventana de confirmación
+      this.mostrarConfirmacion = false;
+      this.cineAEliminar = null;
+    }, 600);
+  }
 }
