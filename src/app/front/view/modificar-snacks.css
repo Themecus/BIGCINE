@@ -1,0 +1,177 @@
+/* Estilos específicos para modificar snacks */
+.snack-card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.snack-card:hover {
+  transform: translateY(-5px);
+  border-color: #ffc107;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.modificar-page {
+  background: linear-gradient(180deg, var(--blue-900) 0%, var(--blue-700) 60%);
+  min-height: 100vh;
+  color: var(--white);
+}
+
+.modificar-page .hero {
+  padding: 2.5rem 0 2rem 0;
+  background: linear-gradient(90deg, #ffc107 0%, #ffb300 100%);
+  color: #000;
+  border-radius: 32px 32px 18px 18px;
+  box-shadow: 0 8px 32px rgba(255, 193, 7, 0.18);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.modificar-page .cartelera-nombre {
+  font-family: 'Segoe UI', 'Montserrat', Arial, sans-serif;
+  font-size: 2.1rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #000;
+  text-shadow: 0 2px 8px rgba(255, 193, 7, 0.2);
+}
+
+.modificar-page .cartelera-destacado {
+  color: #063970;
+  font-weight: 900;
+  font-size: 2.1rem;
+  margin-left: 0.3rem;
+  text-shadow: 0 2px 8px rgba(6, 57, 112, 0.2);
+}
+
+.modificar-page .hero-subtitle {
+  margin: 0.7rem 0 0 0;
+  font-size: 1.15rem;
+  font-weight: 500;
+  opacity: 0.9;
+  letter-spacing: 0.5px;
+  color: #000;
+}
+
+.snack-icon-container {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem;
+  text-align: center;
+  border-radius: 8px 8px 0 0;
+}
+
+.snack-icon-large {
+  font-size: 3rem;
+  display: block;
+}
+
+.snack-icon-preview {
+  font-size: 4rem;
+  display: block;
+}
+
+.snack-nombre {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+}
+
+.snack-meta {
+  font-size: 0.9rem;
+  color: #718096;
+  margin-bottom: 0.25rem;
+}
+
+.modificar-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.modificar-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 193, 7, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modificar-card:hover .modificar-overlay {
+  opacity: 1;
+}
+
+.modificar-text {
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Modal styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  padding: 0;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid #dee2e6;
+  background: #f8f9fa;
+  border-radius: 12px 12px 0 0;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.modal-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #dee2e6;
+  background: #f8f9fa;
+  border-radius: 0 0 12px 12px;
+}
+
+.success-modal .modal-header {
+  background: #d4edda;
+  color: #155724;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .snack-icon-large {
+    font-size: 2rem;
+  }
+  
+  .snack-icon-preview {
+    font-size: 3rem;
+  }
+  
+  .modal-content {
+    width: 95%;
+    margin: 1rem;
+  }
+}
