@@ -1,4 +1,5 @@
 <div class="eliminar-page">
+<<<<<<< Updated upstream
 
     <section class="hero">
     <h1>💥 ELIMINAR CINES</h1>
@@ -63,3 +64,138 @@
     </div>
 
 </div>
+=======
+  <!-- Hero Section con el estilo de cartelera -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <h1 class="hero-title">
+          <span class="cartelera-icon">💥</span>
+          <span class="cartelera-nombre">ELIMINAR</span>
+          <span class="cartelera-destacado">CINES</span>
+        </h1>
+        <p class="hero-subtitle">Haz clic en cualquier cine para eliminarlo</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="container mt-4">
+    <!-- Información de cines -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="card bg-danger text-white">
+          <div class="card-body text-center">
+            <h5 class="card-title">Cines disponibles: {{ cines.length }}</h5>
+            <p class="card-text mb-2">¡Cuidado! Los cines se eliminarán permanentemente</p>
+            <button 
+              *ngIf="cines.length > 0"
+              class="btn btn-outline-light btn-sm" 
+              (click)="confirmarEliminarTodos()">
+              💣 Eliminar Todos
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lista de cines para eliminar -->
+    <div class="cartelera-container">
+      <!-- Mensaje cuando no hay cines -->
+      <div *ngIf="cines.length === 0" class="text-center py-5">
+        <div class="alert alert-success">
+          <h4>🎉 ¡No hay cines para eliminar!</h4>
+          <p class="mb-0">Todos los cines han sido eliminados. Ve a "Agregar Cine" para añadir más.</p>
+        </div>
+      </div>
+
+      <!-- Grid de cines 2 columnas -->
+      <div class="row row-cols-2 g-4" *ngIf="cines.length > 0">
+        <div class="col" *ngFor="let cine of cines">
+          <div class="card h-100 shadow-sm cine-card eliminar-card" [attr.data-cine-id]="cine.id">
+            <div class="card-img-container">
+              <div class="cine-icon-container">
+                <span class="cine-icon-large">🎭</span>
+              </div>
+              <div class="eliminar-overlay">
+                <span class="eliminar-text">💥 ELIMINAR</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h5 class="cine-nombre">{{ cine.nombre }}</h5>
+              <p class="cine-meta mb-1">
+                <strong>📍 Ubicación:</strong> {{ cine.ubicacion }}
+              </p>
+              <p class="cine-meta mb-1">
+                <strong>🎬 Películas:</strong> {{ cine.peliculas?.length || 0 }}
+              </p>
+              <p class="cine-meta mb-2">
+                <strong>📅 Creado:</strong> {{ cine.fechaCreacion }}
+              </p>
+              <button 
+                class="btn btn-danger w-100 mt-2"
+                (click)="confirmarEliminacion(cine)">
+                💣 Eliminar Cine
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ventana de confirmación -->
+    <div *ngIf="mostrarConfirmacion" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">⚠️ Confirmar Eliminación</h3>
+        </div>
+        <div class="modal-body">
+          <p *ngIf="cineAEliminar?.id !== 'all'">
+            ¿Estás seguro de que quieres eliminar el cine <strong>"{{ cineAEliminar?.nombre }}"</strong>?
+          </p>
+          <p *ngIf="cineAEliminar?.id === 'all'">
+            ¿Estás seguro de que quieres eliminar <strong>TODOS los cines</strong>?<br>
+            <small class="text-muted">Esta acción no se puede deshacer</small>
+          </p>
+          <div *ngIf="cineAEliminar?.id !== 'all'" class="text-center mt-3">
+            <span class="cine-modal-icon">🎭</span>
+            <p class="small text-muted mt-2">
+              {{ cineAEliminar?.ubicacion }} • 
+              Películas: {{ cineAEliminar?.peliculas?.length || 0 }}
+            </p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" (click)="cancelarEliminacion()">Cancelar</button>
+          <button 
+            *ngIf="cineAEliminar?.id !== 'all'"
+            class="btn btn-danger" 
+            (click)="eliminarCineConfirmado()">
+            💣 Sí, Eliminar
+          </button>
+          <button 
+            *ngIf="cineAEliminar?.id === 'all'"
+            class="btn btn-danger" 
+            (click)="eliminarTodosConfirmados()">
+            💣 Sí, Eliminar Todos
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ventana de éxito -->
+    <div *ngIf="mostrarExito" class="modal-overlay">
+      <div class="modal-content success-modal">
+        <div class="modal-header">
+          <h3 class="modal-title">✅ Eliminación Exitosa</h3>
+        </div>
+        <div class="modal-body">
+          <p>{{ mensajeExito }}</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success" (click)="cerrarExito()">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+>>>>>>> Stashed changes

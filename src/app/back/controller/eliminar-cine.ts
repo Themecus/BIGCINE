@@ -76,4 +76,8 @@ export class EliminarCineComponent implements OnInit {
     this.mostrarExito = false;
     this.mensajeExito = '';
     }
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes
