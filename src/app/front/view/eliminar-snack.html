@@ -1,0 +1,143 @@
+<div class="eliminar-page">
+  <!-- Hero Section con el estilo de cartelera -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <h1 class="hero-title">
+          <span class="cartelera-icon">💥</span>
+          <span class="cartelera-nombre">ELIMINAR</span>
+          <span class="cartelera-destacado">SNACKS</span>
+        </h1>
+        <p class="hero-subtitle">Haz clic en cualquier snack para eliminarlo</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="container mt-4">
+    <!-- Información de la dulcería -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="card bg-danger text-white">
+          <div class="card-body text-center">
+            <h5 class="card-title">Snacks disponibles: {{ snacks.length }}</h5>
+            <p class="card-text mb-2">¡Cuidado! Los snacks se eliminarán permanentemente</p>
+            <button 
+              *ngIf="snacks.length > 0"
+              class="btn btn-outline-light btn-sm" 
+              (click)="confirmarEliminarTodos()">
+              💣 Eliminar Todos
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grid de snacks para eliminar -->
+    <div class="cartelera-container">
+      <!-- Mensaje cuando no hay snacks -->
+      <div *ngIf="snacks.length === 0" class="text-center py-5">
+        <div class="alert alert-success">
+          <h4>🎉 ¡No hay snacks para eliminar!</h4>
+          <p class="mb-0">Todos los snacks han sido eliminados. Ve a "Agregar Snacks" para añadir más.</p>
+        </div>
+      </div>
+
+      <!-- Grid de snacks 2 columnas -->
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" *ngIf="snacks.length > 0">
+        <div class="col" *ngFor="let snack of snacks">
+          <div class="card h-100 shadow-sm snack-card eliminar-card" 
+               [attr.data-snack-id]="snack.id"
+               (click)="seleccionarSnack(snack, $event)">
+            <div class="card-img-container">
+              <div class="snack-icon-container">
+                <span class="snack-icon-large">
+                  {{ getIconoCategoria(snack.categoria) }}
+                </span>
+              </div>
+              <div class="eliminar-overlay">
+                <span class="eliminar-text">💥 ELIMINAR</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h5 class="snack-nombre">{{ snack.nombre }}</h5>
+              <p class="snack-meta mb-1">
+                <strong>Categoría:</strong> {{ getNombreCategoria(snack.categoria) }}
+              </p>
+              <p class="snack-meta mb-1">
+                <strong>Precio:</strong> {{ formatearPrecio(snack.precio) }}
+              </p>
+              <p class="snack-meta mb-2">
+                <strong>Stock:</strong> 
+                <span [class.text-danger]="snack.stock < 10" [class.text-success]="snack.stock >= 10">
+                  {{ snack.stock }} unidades
+                </span>
+              </p>
+              <button 
+                class="btn btn-danger w-100 mt-2"
+                (click)="confirmarEliminacion(snack, $event); $event.stopPropagation()">
+                💣 Eliminar Snack
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ventanas emergentes -->
+    <div *ngIf="mostrarConfirmacion" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">⚠️ Confirmar Eliminación</h3>
+        </div>
+        <div class="modal-body">
+          <p *ngIf="snackAEliminar?.id !== 'all'">
+            ¿Estás seguro de que quieres eliminar el snack <strong>"{{ snackAEliminar?.nombre }}"</strong>?
+          </p>
+          <p *ngIf="snackAEliminar?.id === 'all'">
+            ¿Estás seguro de que quieres eliminar <strong>TODOS los snacks</strong>?<br>
+            <small class="text-muted">Esta acción no se puede deshacer</small>
+          </p>
+          <div *ngIf="snackAEliminar?.id !== 'all'" class="text-center mt-3">
+            <span class="snack-modal-icon" style="font-size: 3rem;">
+              {{ getIconoCategoria(snackAEliminar?.categoria) }}
+            </span>
+            <p class="small text-muted mt-2">
+              {{ getNombreCategoria(snackAEliminar?.categoria) }} • 
+              {{ formatearPrecio(snackAEliminar?.precio) }} • 
+              Stock: {{ snackAEliminar?.stock }}
+            </p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" (click)="cancelarEliminacion()">Cancelar</button>
+          <button 
+            *ngIf="snackAEliminar?.id !== 'all'"
+            class="btn btn-danger" 
+            (click)="eliminarSnackConfirmado()">
+            💣 Sí, Eliminar
+          </button>
+          <button 
+            *ngIf="snackAEliminar?.id === 'all'"
+            class="btn btn-danger" 
+            (click)="eliminarTodosConfirmados()">
+            💣 Sí, Eliminar Todos
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="mostrarExito" class="modal-overlay">
+      <div class="modal-content success-modal">
+        <div class="modal-header">
+          <h3 class="modal-title">✅ Eliminación Exitosa</h3>
+        </div>
+        <div class="modal-body">
+          <p>{{ mensajeExito }}</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success" (click)="cerrarExito()">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
