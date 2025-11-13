@@ -16,6 +16,17 @@
   margin-bottom: 2rem;
 }
 
+
+.hero-title{
+    padding: 2.5rem 0 2rem 0;
+    background: linear-gradient(90deg, #ffc107 0%, #ffb300 100%);
+    color: #000;
+    border-radius: 32px 32px 18px 18px;
+    box-shadow: 0 8px 32px rgba(255, 193, 7, 0.18);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
 .modificar-page .hero::before {
   content: '';
   position: absolute;
