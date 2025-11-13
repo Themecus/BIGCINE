@@ -6,6 +6,7 @@ import { EliminarCineComponent } from './back/controller/eliminar-cine';
 import { AnadirSnacksComponent } from './back/controller/anadir-snacks';
 import { ModificarPeliculaComponent } from './back/controller/modificar-pelicula';
 import { ModificarSnacksComponent } from './back/controller/modificar-snacks';
+import { EliminarSnackComponent } from './back/controller/eliminar-snack';
 import { AnadirCineComponent } from './back/controller/anadir-cine';
 
 
@@ -50,6 +51,11 @@ export const routes: Routes = [
     path: 'anadir-cine',
     component: AnadirCineComponent,
     title: 'Anadir cine'
+  },
+  {
+    path: 'eliminar-snack',
+    component: EliminarSnackComponent,
+    title: 'Eliminar Snack' 
   },
   {
     path: '',
