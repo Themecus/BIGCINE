@@ -1,0 +1,105 @@
+<div class="anadir-cine-page">
+<!-- Hero Section con el estilo de cartelera -->
+<section class="hero">
+    <div class="hero-inner">
+    <div>
+        <h1 class="hero-title">
+        <span class="cartelera-icon">🏢</span>
+        <span class="cartelera-nombre">AGREGAR</span>
+        <span class="cartelera-destacado">CINE</span>
+        </h1>
+        <p class="hero-subtitle">Añade un nuevo cine y asígnale películas y horarios</p>
+    </div>
+    </div>
+</section>
+
+<div class="container mt-4">
+    <div class="card shadow-lg mb-5">
+    <div class="card-body formulario-izquierda">
+        <form (ngSubmit)="guardarCine()" #cineForm="ngForm" autocomplete="off">
+        <div class="row g-3">
+            <!-- Nombre del cine -->
+            <div class="col-12 col-md-5">
+            <label for="nombreCine" class="form-label fw-bold">Nombre del Cine</label>
+        	<input
+                id="nombreCine"
+                name="nombreCine"
+                [(ngModel)]="nombreCine"
+                required
+                class="form-control"
+                placeholder="Ej: Cine Central"
+            />
+            </div>
+            <!-- Películas -->
+            <div class="col-12 col-md-5">
+            <label class="form-label fw-bold">Selecciona películas para este cine</label>
+              <div *ngIf="peliculas && peliculas.length > 0; else sinPeliculas">
+                <div class="form-check" *ngFor="let pelicula of peliculas">
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    [id]="'pelicula_' + pelicula.nombre"
+                    [value]="pelicula"
+                    (change)="onCheckboxChange($event, pelicula)"
+                    [checked]="peliculasSeleccionadas.includes(pelicula)"
+                />
+                <label class="form-check-label" [for]="'pelicula_' + pelicula.nombre">
+                    {{ pelicula.nombre }}<span *ngIf="pelicula.anio"> ({{ pelicula.anio }})</span>
+                </label>
+                </div>
+            </div>
+            <ng-template #sinPeliculas>
+                <div class="text-muted">No hay películas disponibles</div>
+            </ng-template>
+            </div>
+        </div>
+
+        <div class="row g-3 mt-2">
+            <!-- Horarios -->
+            <div class="col-12">
+            <label class="form-label fw-bold">Horarios</label>
+              <div *ngFor="let horario of horarios; let i = index" class="horario-row mb-2">
+                <input
+                [(ngModel)]="horarios[i]"
+                [name]="'horario' + i"
+                class="form-control"
+                placeholder="Ej: 18:00"
+                required
+                style="max-width: 180px; display: inline-block; margin-right: 8px;"
+                />
+                <button
+                type="button"
+                class="btn btn-danger btn-sm"
+                (click)="eliminarHorario(i)"
+                  *ngIf="horarios.length > 1"
+                >
+                Eliminar
+                </button>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm mt-1" (click)="agregarHorario()">
+                Agregar horario
+            </button>
+            </div>
+        </div>
+
+        <div class="row g-3 mt-3">
+            <!-- Botón Guardar -->
+            <div class="col-12 col-md-2 d-flex align-items-end">
+            <button
+                class="btn btn-success w-100"
+                type="submit"
+                [disabled]="!cineForm.form.valid"
+            >
+                Guardar Cine
+            </button>
+            </div>
+        </div>
+        </form>
+
+        <small class="text-muted mt-2 d-block">
+        💡 Tip: Puedes asignar varias películas y horarios a un cine.
+        </small>
+    </div>
+    </div>
+</div>
+</div>
