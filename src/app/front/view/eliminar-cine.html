@@ -1,70 +1,4 @@
 <div class="eliminar-page">
-<<<<<<< Updated upstream
-
-    <section class="hero">
-    <h1>💥 ELIMINAR CINES</h1>
-    <p>Haz clic en cualquier cine para eliminarlo</p>
-    </section>
-
-    <div class="container">
-
-    <!-- Cuando no hay cines -->
-    <div *ngIf="cines.length === 0" class="no-cines">
-        <p>🎉 ¡No hay cines para eliminar!</p>
-    </div>
-
-    <!-- Grid de cines -->
-    <div *ngIf="cines.length > 0" class="cines-grid">
-      <div *ngFor="let cine of cines" class="cine-card">
-        <div class="card-img-container" (click)="confirmarEliminacion(cine)">
-            <img [src]="cine.imagenUrl || 'https://via.placeholder.com/300x200/dc3545/ffffff?text=Cine'"
-                [alt]="cine.nombre">
-            <div class="overlay">💥 ELIMINAR</div>
-        </div>
-        <div class="card-body">
-            <h4>{{ cine.nombre }}</h4>
-            <p>📍 {{ cine.ubicacion }}</p>
-          <p *ngIf="cine.peliculas?.length">🎬 {{ getPeliculasTexto(cine) }}</p>
-        </div>
-        </div>
-    </div>
-
-    <!-- Botón eliminar todos -->
-    <button *ngIf="cines.length > 0" class="btn-eliminar-todos" (click)="confirmarEliminarTodos()">
-        💣 Eliminar Todos
-    </button>
-
-    </div>
-
-    <!-- Modal Confirmación -->
-  <div *ngIf="mostrarConfirmacion" class="modal-overlay">
-    <div class="modal-content">
-        <h3>⚠️ Confirmar Eliminación</h3>
-      <p *ngIf="cineAEliminar?.id !== 'all'">
-        ¿Seguro que quieres eliminar "{{ cineAEliminar?.nombre }}"?
-        </p>
-      <p *ngIf="cineAEliminar?.id === 'all'">
-        ¿Seguro que quieres eliminar todos los cines?
-        </p>
-        <div class="modal-buttons">
-        <button (click)="cancelarEliminacion()">Cancelar</button>
-        <button *ngIf="cineAEliminar?.id !== 'all'" (click)="eliminarCineConfirmado()">Sí, Eliminar</button>
-        <button *ngIf="cineAEliminar?.id === 'all'" (click)="eliminarTodosConfirmados()">Sí, Eliminar Todos</button>
-        </div>
-    </div>
-    </div>
-
-    <!-- Modal Éxito -->
-  <div *ngIf="mostrarExito" class="modal-overlay">
-    <div class="modal-content success">
-        <h3>✅ Éxito</h3>
-        <p>{{ mensajeExito }}</p>
-        <button (click)="cerrarExito()">Aceptar</button>
-    </div>
-    </div>
-
-</div>
-=======
   <!-- Hero Section con el estilo de cartelera -->
   <section class="hero">
     <div class="hero-inner">
@@ -198,4 +132,3 @@
     </div>
   </div>
 </div>
->>>>>>> Stashed changes
