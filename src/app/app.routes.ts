@@ -4,6 +4,7 @@ import { CarteleraComponent } from './cartelera/controller/cartelera';
 import { EliminarPeliculaComponent } from './eliminar-pelicula/controller/eliminar-pelicula';
 import { EliminarCineComponent } from './eliminar-cine/controller/eliminar-cine';
 import { AnadirSnacksComponent } from './anadir-snacks/controlador/anadir-snacks';
+import { ModificarPeliculaComponent } from './modificar-pelicula/controller/modificar-pelicula';
 
 export const routes: Routes = [
   {
@@ -30,6 +31,11 @@ export const routes: Routes = [
     path: 'agregar-snacks', 
     component: AnadirSnacksComponent,
     title: 'Agregar Snacks'
+  },
+  { 
+    path: 'modificar-pelicula',
+    component: ModificarPeliculaComponent,
+    title: 'Modificar Pelicula'
   },
   {
     path: '',
