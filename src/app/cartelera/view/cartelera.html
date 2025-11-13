@@ -1,4 +1,5 @@
 <div class="cartelera-page">
+  <!-- Header / Hero azul -->
   <header class="hero">
     <div class="hero-inner container">
       <div class="hero-text">
@@ -11,7 +12,9 @@
     </div>
   </header>
 
+  <!-- Contenido principal blanco -->
   <main class="container main-card">
+    <!-- Estado vacío -->
     <div *ngIf="peliculas.length === 0" class="empty-state">
       <div class="empty-box">
         <h3>No hay películas en la cartelera</h3>
@@ -19,6 +22,7 @@
       </div>
     </div>
 
+    <!-- Grid responsivo de películas -->
     <section class="cartelera-container" *ngIf="peliculas.length > 0">
       <div class="grid">
         <article class="pelicula-card" *ngFor="let pelicula of peliculas" role="article" aria-label="Película {{pelicula.nombre}}">
@@ -39,6 +43,7 @@
     </section>
   </main>
 
+  <!-- Footer azul -->
   <footer class="cartelera-footer">
     <div class="container footer-inner">
       <nav class="footer-links" aria-label="Enlaces de pie de página"></nav>

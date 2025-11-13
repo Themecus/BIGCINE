@@ -9,15 +9,15 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule]
 })
 export class CarteleraComponent implements OnInit {
-
+  // Array para almacenar las películas
   peliculas: any[] = [];
 
-
+  // Se ejecuta cuando el componente se inicializa
   ngOnInit() {
     this.cargarPeliculasDesdeLocalStorage();
   }
 
-
+  // Cargar películas desde LocalStorage
   cargarPeliculasDesdeLocalStorage() {
     const peliculasGuardadas = localStorage.getItem('carteleraPeliculas');
     if (peliculasGuardadas) {
